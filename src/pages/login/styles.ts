@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -73,6 +74,12 @@ export const Content = styled.div`
       font-size: 1rem;
       font-weight: 600;
       color: ${props => props.theme.colors.text};
+
+      transition: 0.5s;
+
+      &:hover {
+        background: ${props => lighten(0.08, props.theme.colors.primary)};
+      }
     }
   }
 `;
