@@ -1,11 +1,19 @@
-// import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { Container, LogoContent, Content } from './styles';
 
+type SignInFormData = {
+  email: string;
+  password: string;
+};
+
 export default function Login() {
-  // const {
-  //   register,
-  //   formState: { errors }
-  // } = useForm();
+  const { register, handleSubmit } = useForm<SignInFormData>();
+
+  const handleSignIn: SubmitHandler<SignInFormData> = async values => {
+    console.log(values);
+  };
+
   return (
     <Container>
       <LogoContent>
@@ -15,9 +23,22 @@ export default function Login() {
       </LogoContent>
 
       <Content>
-        <form>
-          <input type="email" name="" id="" placeholder="E-mail" />
-          <input type="password" name="" id="" placeholder="Senha" />
+        <form onSubmit={handleSubmit(handleSignIn)}>
+          <input
+            name="email"
+            type="email"
+            placeholder="E-mail"
+            required
+            {...register('email')}
+          />
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Senha"
+            required
+            {...register('password')}
+          />
 
           <button type="submit">Entrar</button>
         </form>

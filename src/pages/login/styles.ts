@@ -58,6 +58,12 @@ export const Content = styled.div`
       &:first-child {
         margin-bottom: 2.375rem;
       }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 3rem 3rem 3rem 3rem
+          ${props => props.theme.colors.card} inset;
+        -webkit-text-fill-color: ${props => props.theme.colors.textSecondary};
+      }
     }
 
     button {
