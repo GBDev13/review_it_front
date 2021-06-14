@@ -11,4 +11,16 @@ export default createGlobalStyle`
     color: ${props => props.theme.colors.text};
     font: 400 1rem 'Roboto', sans-serif;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+  }
 `;
