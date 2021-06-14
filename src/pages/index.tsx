@@ -1,7 +1,10 @@
+import Header from '../components/Header';
+import { HomeContainer } from '../styles/HomeStyles';
+
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <HomeContainer>
+      <Header />
+    </HomeContainer>
   );
 }

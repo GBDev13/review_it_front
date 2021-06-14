@@ -1,0 +1,72 @@
+import { lighten } from 'polished';
+import styled from 'styled-components';
+
+interface UserProfileProps {
+  url: string;
+}
+
+interface NavLinkProps {
+  isActive: boolean;
+}
+
+export const Container = styled.div`
+  width: 100%;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid ${props => props.theme.colors.border};
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      font-weight: 400;
+      font-size: 4rem;
+      margin-right: 5rem;
+
+      span {
+        color: ${props => props.theme.colors.primary};
+      }
+    }
+
+    > section {
+      display: flex;
+      align-items: center;
+    }
+  }
+`;
+
+export const NavLinkContainer = styled.a<NavLinkProps>`
+  background: ${props =>
+    props.isActive ? props.theme.colors.primary : props.theme.colors.card};
+  border: 3px solid
+    ${props =>
+      props.isActive ? props.theme.colors.primary : props.theme.colors.border};
+  transition: 0.5s;
+  padding: 0.5rem 1rem;
+  color: ${props =>
+    props.isActive
+      ? props.theme.colors.text
+      : props.theme.colors.textSecondary};
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background: ${props =>
+      lighten(
+        0.08,
+        props.isActive ? props.theme.colors.primary : props.theme.colors.card
+      )};
+    border-color: ${props =>
+      lighten(
+        0.08,
+        props.isActive ? props.theme.colors.primary : props.theme.colors.border
+      )};
+  }
+
+  & + & {
+    margin-left: 1.5rem;
+  }
+`;
+
+export const UserProfile = styled.div<UserProfileProps>``;
