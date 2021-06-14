@@ -1,5 +1,6 @@
-import { BiBell } from 'react-icons/bi';
+import Input from '../Input';
 import NavLink from './NavLink';
+import Notification from './Notification';
 import { Container, UserProfile } from './styles';
 
 function Header() {
@@ -18,9 +19,9 @@ function Header() {
         </section>
 
         <section>
-          <input placeholder="Buscar projetos" />
+          <Input placeholder="Buscar projetos" />
           <UserProfile url="https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png" />
-          <BiBell />
+          <Notification />
         </section>
       </div>
     </Container>
