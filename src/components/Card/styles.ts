@@ -1,0 +1,68 @@
+import styled from 'styled-components';
+
+export const CardContainer = styled.div`
+  width: 25rem;
+  height: 11.25rem;
+
+  padding: 1rem;
+
+  background: ${props => props.theme.colors.card};
+
+  border: 3px solid ${props => props.theme.colors.border};
+  border-radius: 1.875rem;
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: ${props => props.theme.colors.textSecondary};
+
+    margin-top: 0.5rem;
+  }
+`;
+
+export const TechContainer = styled.div`
+  display: flex;
+  width: 100%;
+
+  div {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3.75rem;
+    height: 1.375rem;
+
+    background: ${props => props.theme.colors.primary};
+
+    margin-top: 0.5rem;
+    margin-right: 0.375rem;
+
+    font-size: 0.625rem;
+
+    border-radius: 0.25rem;
+  }
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1.2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: ${props => props.theme.colors.textSecondary};
+
+    span {
+      margin-left: 0.25rem;
+    }
+  }
+`;
