@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  width: 25rem;
+  width: 100%;
   height: 11.25rem;
 
   padding: 1rem;
@@ -65,4 +65,12 @@ export const FlexContainer = styled.div`
       margin-left: 0.25rem;
     }
   }
+`;
+
+export const CardGridContainer = styled.section`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.3rem;
+  margin-top: 3rem;
 `;
