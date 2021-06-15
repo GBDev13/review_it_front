@@ -98,6 +98,7 @@ export const CardGridContainer = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1.3rem;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr 1fr;
