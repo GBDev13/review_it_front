@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
@@ -6,6 +7,23 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: none;
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      transition:.3s;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.colors.primary};
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+      background: ${({ theme }) => lighten(0.08, theme.colors.primary)};
+    }
+    ::-webkit-scrollbar-track{
+      background: ${({ theme }) => theme.colors.textSecondary};
+      border-radius: 10px;
+    }
   }
 
   html{

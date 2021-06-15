@@ -28,7 +28,7 @@ export const CardContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 15rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,10 +41,6 @@ export const CardContainer = styled.div`
     p {
       font-size: 0.8rem;
     }
-  }
-
-  @media (max-width: 425px) {
-    height: 100%;
   }
 `;
 
@@ -103,11 +99,11 @@ export const CardGridContainer = styled.section`
   grid-gap: 1.3rem;
   margin-top: 3rem;
 
-  @media (max-width: 425px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 520px) {
     grid-template-columns: 1fr;
   }
 `;

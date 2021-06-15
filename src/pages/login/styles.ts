@@ -2,12 +2,27 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 
 export const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  width: 100vw;
+  height: 100vh;
+
+  @media (max-width: 1045px) {
+    grid-template-columns: 1fr;
+
+    grid-template-rows: 1fr 3fr;
+  }
+  @media (max-width: 500px) {
+    grid-template-rows: 1fr 1fr;
+  }
+  @media (max-width: 380px) {
+    grid-template-rows: 0.5fr 1fr;
+  }
 `;
 
 export const LogoContent = styled.div`
-  width: 35.5rem;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,12 +34,15 @@ export const LogoContent = styled.div`
     span {
       color: #000;
     }
+    @media (max-width: 380px) {
+      font-size: 4rem;
+    }
   }
 `;
 
 export const Content = styled.div`
-  width: 54.5rem;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +104,21 @@ export const Content = styled.div`
       &:hover {
         background: ${props => lighten(0.08, props.theme.colors.primary)};
       }
+    }
+  }
+  @media (max-width: 500px) {
+    padding: 0 2rem;
+
+    form {
+      width: 100%;
+      input {
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 380px) {
+    form button {
+      width: 100%;
     }
   }
 `;
