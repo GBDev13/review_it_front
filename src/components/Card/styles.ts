@@ -4,6 +4,10 @@ export const CardContainer = styled.div`
   width: 100%;
   height: 11.25rem;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   padding: 1rem;
 
   background: ${props => props.theme.colors.card};
@@ -21,6 +25,26 @@ export const CardContainer = styled.div`
     color: ${props => props.theme.colors.textSecondary};
 
     margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.8rem;
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    height: 100%;
   }
 `;
 
@@ -65,6 +89,11 @@ export const FlexContainer = styled.div`
       margin-left: 0.25rem;
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const CardGridContainer = styled.section`
@@ -73,4 +102,12 @@ export const CardGridContainer = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1.3rem;
   margin-top: 3rem;
+
+  @media (max-width: 425px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 375px) {
+    grid-template-columns: 1fr;
+  }
 `;
