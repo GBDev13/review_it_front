@@ -38,6 +38,45 @@ export const Container = styled.div`
       align-items: center;
     }
   }
+
+  svg.mobileMenu {
+    display: none;
+  }
+
+  @media (max-width: 1100px) {
+    > div h1 {
+      font-size: 2rem;
+    }
+
+    > div > section input {
+      display: none;
+    }
+  }
+  @media (max-width: 650px) {
+    > div h1 {
+      margin-right: 0;
+    }
+    > div > section > nav {
+      display: none;
+    }
+    svg.mobileMenu {
+      display: block;
+      width: 2rem;
+      height: 2rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      path {
+        fill: ${props => props.theme.colors.textSecondary};
+        transition: 0.5s;
+      }
+
+      &:hover {
+        path {
+          fill: ${props => lighten(0.06, props.theme.colors.textSecondary)};
+        }
+      }
+    }
+  }
 `;
 
 export const NavLinkContainer = styled.a<NavLinkProps>`
@@ -85,6 +124,13 @@ export const UserProfile = styled.div<UserProfileProps>`
   &:hover {
     filter: brightness(1.3);
   }
+
+  @media (max-width: 650px) {
+    margin: 0 1rem;
+  }
+  @media (max-width: 360px) {
+    display: none;
+  }
 `;
 
 export const NotificationContainer = styled.div<NotificationProps>`
@@ -117,6 +163,19 @@ export const NotificationContainer = styled.div<NotificationProps>`
           props.hasNotification
             ? lighten(0.05, props.theme.colors.primary)
             : lighten(0.05, props.theme.colors.textSecondary)};
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    width: 2rem;
+    height: 2rem;
+    svg {
+      width: 2rem;
+      height: 2rem;
+      &:hover {
+        width: 2rem;
+        height: 2rem;
       }
     }
   }

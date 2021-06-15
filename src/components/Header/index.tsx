@@ -1,3 +1,4 @@
+import { HiMenuAlt2 } from 'react-icons/hi';
 import Input from '../Input';
 import NavLink from './NavLink';
 import Notification from './Notification';
@@ -22,6 +23,7 @@ function Header() {
           <Input placeholder="Buscar projetos" />
           <UserProfile url="https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png" />
           <Notification />
+          <HiMenuAlt2 className="mobileMenu" />
         </section>
       </div>
     </Container>
