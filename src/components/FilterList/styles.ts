@@ -26,6 +26,14 @@ export const Container = styled.section`
       background: ${props => props.theme.colors.primary};
     }
   }
+
+  @media (max-width: 550px) {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const FiltersContainer = styled.div`
