@@ -49,7 +49,9 @@ export const Content = styled.div`
 
   form {
     display: flex;
+    height: 20rem;
     align-items: center;
+    justify-content: space-evenly;
     flex-direction: column;
 
     input {
@@ -73,10 +75,6 @@ export const Content = styled.div`
         font-weight: 400;
       }
 
-      &:first-child {
-        margin-bottom: 2.375rem;
-      }
-
       &:-webkit-autofill {
         -webkit-box-shadow: 3rem 3rem 3rem 3rem
           ${props => props.theme.colors.card} inset;
@@ -84,11 +82,13 @@ export const Content = styled.div`
       }
     }
 
+    div {
+      align-self: flex-start;
+    }
+
     button {
       width: 9.973rem;
       height: 2.8rem;
-
-      margin-top: 2.7rem;
 
       border: 0;
       border-radius: 1.25rem;
@@ -120,5 +120,18 @@ export const Content = styled.div`
     form button {
       width: 100%;
     }
+  }
+`;
+
+export const FieldError = styled.div`
+  display: flex;
+  align-items: center;
+
+  color: ${props => props.theme.colors.error};
+
+  font-size: 1.2rem;
+
+  span {
+    margin-left: 0.7rem;
   }
 `;
