@@ -6,6 +6,7 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
 import { Container, LogoContent, Content, FieldError } from './styles';
+import Input from '../../components/Input';
 
 type SignInFormData = {
   email: string;
@@ -66,13 +67,12 @@ export default function Login() {
 
         <Content>
           <form onSubmit={handleSubmit(handleSignIn)}>
-            <input name="email" placeholder="E-mail" {...register('email')} />
+            <Input placeholder="E-mail" {...register('email')} />
             <FieldError>{errors.email?.message}</FieldError>
 
-            <input
-              name="password"
-              type="password"
+            <Input
               placeholder="Senha"
+              type="password"
               {...register('password')}
             />
             <FieldError>{errors.password?.message}</FieldError>
