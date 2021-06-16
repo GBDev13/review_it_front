@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
 // import { toast } from 'react-toastify';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   LogoContent,
@@ -16,6 +16,7 @@ import {
 } from './styles';
 import Input from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
+import FilterList from '../../components/FilterList';
 
 type CreateUserData = {
   nickname: string;
@@ -93,6 +94,8 @@ export default function Login() {
     console.log(data);
   };
 
+  const [isExpert, setIsExpert] = useState(false);
+
   return (
     <>
       <Head>
@@ -139,10 +142,13 @@ export default function Login() {
                 value="true"
                 id="true"
                 {...register('is_expert')}
+                onClick={() => setIsExpert(!isExpert)}
               />
               <label htmlFor="true">Quero ser um expert</label>
             </FlexInput>
             <FieldError>{errors.is_expert?.message}</FieldError>
+
+            {isExpert && <FilterList titulo="Tecnologias" />}
 
             <button type="submit">Cadastrar</button>
           </form>

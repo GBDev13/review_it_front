@@ -19,7 +19,7 @@ export default function Home() {
         <MobileMenu />
         <Header />
         <HomeContent>
-          <FilterList />
+          <FilterList titulo="Filtre por tecnologia" />
           <CardGrid />
         </HomeContent>
       </HomeContainer>

@@ -1,29 +1,24 @@
 import { Container, FiltersContainer } from './styles';
 import FilterItem from './FilterItem';
 
-function FilterList() {
+type FilterListProps = {
+  titulo: string;
+};
+
+function FilterList({ titulo }: FilterListProps) {
   const filters = [
     'Javascript',
-    'ReactJS',
     'Typescript',
+    'ReactJS',
+    'NodeJS',
     'Java',
-    'Javascript',
-    'ReactJS',
-    'Typescript',
-    'Java',
-    'Javascript',
-    'ReactJS',
-    'Typescript',
-    'Java',
-    'Javascript',
-    'ReactJS',
-    'Typescript',
-    'Java'
+    'Python',
+    'PHP'
   ];
 
   return (
     <Container>
-      <h1>Filtre por tecnologia</h1>
+      <h1>{titulo}</h1>
 
       <FiltersContainer>
         {filters.map(filter => (
