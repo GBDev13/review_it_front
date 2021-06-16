@@ -151,6 +151,11 @@ export const FlexInput = styled.div`
   justify-content: center;
   height: 2.625rem;
 
+  a {
+    justify-content: center;
+    margin-left: 0.5rem;
+  }
+
   input[type='radio'] {
     display: none;
   }

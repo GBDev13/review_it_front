@@ -3,7 +3,8 @@ import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { RiErrorWarningFill } from 'react-icons/ri';
+import { RiErrorWarningFill, RiInformationLine } from 'react-icons/ri';
+import ReactTooltip from 'react-tooltip';
 // import { toast } from 'react-toastify';
 
 import React from 'react';
@@ -143,6 +144,17 @@ export default function Login() {
                   {...register('is_expert')}
                 />
                 <label htmlFor="true">Expert</label>
+                <a data-tip="Expert é usuário que realiza o code review de outros usuários">
+                  <FlexInput>
+                    <RiInformationLine />
+                  </FlexInput>
+                </a>
+                <ReactTooltip
+                  place="bottom"
+                  textColor="#fff"
+                  backgroundColor="#6D55FD"
+                  effect="solid"
+                />
               </FlexInput>
             </GridInput>
             <FieldError>{errors.is_expert?.message}</FieldError>
