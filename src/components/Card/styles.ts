@@ -14,6 +14,12 @@ export const CardContainer = styled.div`
 
   border: 3px solid ${props => props.theme.colors.border};
   border-radius: 1.875rem;
+  transition: 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: ${props => props.theme.colors.primary};
+  }
 
   h1 {
     font-size: 1.6rem;

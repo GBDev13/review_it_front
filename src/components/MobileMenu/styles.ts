@@ -11,6 +11,20 @@ export const Container = styled.div<ContainerProps>`
   width: 1px;
   height: 1px;
 
+  > svg {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    animation: fadeIn 1s ease-in-out forwards;
+
+    path {
+      fill: ${props => props.theme.colors.text};
+    }
+  }
+
   > div {
     position: fixed;
     top: 50%;

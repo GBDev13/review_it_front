@@ -57,6 +57,11 @@ export const FilterItemContainer = styled.div<FilterItemContainerProps>`
   cursor: pointer;
   transition: 0.5s;
 
+  &:hover {
+    border-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
+  }
+
   ${props =>
     props.isActive &&
     css`
@@ -64,5 +69,9 @@ export const FilterItemContainer = styled.div<FilterItemContainerProps>`
       background: ${props.theme.colors.primary};
       border-color: ${props.theme.colors.primary};
       color: ${props.theme.colors.text};
+
+      &:hover {
+        color: ${props.theme.colors.text};
+      }
     `}
 `;

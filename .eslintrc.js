@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'import/prefer-default-export': 'off',
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'no-param-reassign':'off'
   }
 };

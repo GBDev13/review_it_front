@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
-import { toast } from 'react-toastify';
 
 import { Container, LogoContent, Content, FieldError } from './styles';
 import Input from '../../components/Input';
