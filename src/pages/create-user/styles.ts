@@ -44,8 +44,9 @@ export const Content = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   form {
     display: flex;
@@ -106,7 +107,13 @@ export const Content = styled.div`
       }
     }
   }
+
+  @media (max-width: 1080px) {
+    height: 120vh;
+  }
+
   @media (max-width: 500px) {
+    height: 120vh;
     padding: 0 2rem;
 
     form {
@@ -116,6 +123,7 @@ export const Content = styled.div`
       }
     }
   }
+
   @media (max-width: 380px) {
     form button {
       width: 100%;
@@ -141,11 +149,47 @@ export const FlexInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  height: 2.625rem;
+
+  a {
+    justify-content: center;
+    margin-left: 0.5rem;
+  }
 
   input[type='radio'] {
-    width: 1.5rem;
-    margin-right: 1rem;
+    display: none;
+  }
+
+  label {
+    position: relative;
+
+    color: ${props => props.theme.colors.text};
+    font-size: 1.125rem;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+  }
+
+  label:before {
+    content: '';
+
+    width: 2rem;
+    height: 2rem;
+
+    border: 0.35rem solid ${props => props.theme.colors.border};
+    border-radius: 50%;
+
+    background: ${props => props.theme.colors.card};
+
+    margin-right: 0.375rem;
+  }
+
+  input[type='radio']:checked + label:before {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.75rem solid ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.card};
   }
 `;
 

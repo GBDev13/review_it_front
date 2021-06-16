@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { RiErrorWarningFill } from 'react-icons/ri';
+import { RiErrorWarningFill, RiInformationLine } from 'react-icons/ri';
+import ReactTooltip from 'react-tooltip';
 // import { toast } from 'react-toastify';
 
 import React from 'react';
@@ -15,13 +17,14 @@ import {
   GridInput
 } from './styles';
 import Input from '../../components/Input';
+import FooterNavigation from '../../components/FooterNavigation';
 
 type CreateUserData = {
   nickname: string;
   email: string;
   password: string;
   is_expert: boolean;
-  picture_url?: string;
+  picture_url?: string | null;
 };
 
 function InvalidEmailErrorMessage() {
@@ -51,13 +54,25 @@ function InvalidURLErrorMessage() {
   );
 }
 
+function MinCharsErrorMessage() {
+  return (
+    <>
+      <RiErrorWarningFill />
+      <span>A senha deve ter no mínimo 8 caracteres</span>
+    </>
+  );
+}
+
 const schemaFormValidation = yup.object().shape({
   nickname: yup.string().required(RequiredFieldErrorMessage),
   email: yup
     .string()
     .email(InvalidEmailErrorMessage)
     .required(RequiredFieldErrorMessage),
-  password: yup.string().required(RequiredFieldErrorMessage),
+  password: yup
+    .string()
+    .min(8, MinCharsErrorMessage)
+    .required(RequiredFieldErrorMessage),
   is_expert: yup.boolean().nullable().required(RequiredFieldErrorMessage),
   picture_url: yup.string().url(InvalidURLErrorMessage)
 });
@@ -72,6 +87,11 @@ export default function Login() {
   });
 
   const handleSignIn: SubmitHandler<CreateUserData> = async data => {
+    if (!data.picture_url) {
+      // eslint-disable-next-line no-param-reassign
+      data.picture_url = null;
+    }
+
     console.log(data);
   };
 
@@ -108,7 +128,7 @@ export default function Login() {
               <FlexInput>
                 <input
                   type="radio"
-                  name="standart"
+                  name="isExpert"
                   value="false"
                   id="false"
                   {...register('is_expert')}
@@ -118,12 +138,23 @@ export default function Login() {
               <FlexInput>
                 <input
                   type="radio"
-                  name="expert"
+                  name="isExpert"
                   value="true"
                   id="true"
                   {...register('is_expert')}
                 />
                 <label htmlFor="true">Expert</label>
+                <a data-tip="Se você é experiente em algumas tecnologias e está apto a revisar projetos que as implementam">
+                  <FlexInput>
+                    <RiInformationLine />
+                  </FlexInput>
+                </a>
+                <ReactTooltip
+                  place="bottom"
+                  textColor="#fff"
+                  backgroundColor="#6D55FD"
+                  effect="solid"
+                />
               </FlexInput>
             </GridInput>
             <FieldError>{errors.is_expert?.message}</FieldError>
@@ -135,6 +166,12 @@ export default function Login() {
             <FieldError>{errors.picture_url?.message}</FieldError>
             <button type="submit">Cadastrar</button>
           </form>
+
+          <FooterNavigation
+            question="Já possui uma conta?"
+            link="/login"
+            linkText="Entrar"
+          />
         </Content>
       </Container>
     </>
