@@ -144,7 +144,7 @@ export default function Login() {
                   {...register('is_expert')}
                 />
                 <label htmlFor="true">Expert</label>
-                <a data-tip="Expert é usuário que realiza o code review de outros usuários">
+                <a data-tip="Se você é experiente em algumas tecnologias e está apto a revisar projetos que as implementam">
                   <FlexInput>
                     <RiInformationLine />
                   </FlexInput>
