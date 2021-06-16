@@ -13,7 +13,8 @@ import {
   Content,
   FieldError,
   FlexInput,
-  GridInput
+  GridInput,
+  HaveAccountLink
 } from './styles';
 import Input from '../../components/Input';
 
@@ -136,6 +137,11 @@ export default function Login() {
             <FieldError>{errors.picture_url?.message}</FieldError>
             <button type="submit">Cadastrar</button>
           </form>
+
+          <HaveAccountLink>
+            <p>Já possui uma conta?</p>
+            <a href="/login">Entrar</a>
+          </HaveAccountLink>
         </Content>
       </Container>
     </>
