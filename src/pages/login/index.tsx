@@ -3,10 +3,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
+import React from 'react';
 import { Container, LogoContent, Content, FieldError } from './styles';
 import Input from '../../components/Input';
+import FooterNavigation from '../../components/FooterNavigation';
 
 type SignInFormData = {
   email: string;
@@ -79,6 +81,12 @@ export default function Login() {
 
             <button type="submit">Entrar</button>
           </form>
+
+          <FooterNavigation
+            question="Não possui uma conta?"
+            link="/create-user"
+            linkText="Criar conta"
+          />
         </Content>
       </Container>
     </>

@@ -13,10 +13,10 @@ import {
   Content,
   FieldError,
   FlexInput,
-  GridInput,
-  HaveAccountLink
+  GridInput
 } from './styles';
 import Input from '../../components/Input';
+import FooterNavigation from '../../components/FooterNavigation';
 
 type CreateUserData = {
   nickname: string;
@@ -138,10 +138,11 @@ export default function Login() {
             <button type="submit">Cadastrar</button>
           </form>
 
-          <HaveAccountLink>
-            <p>Já possui uma conta?</p>
-            <a href="/login">Entrar</a>
-          </HaveAccountLink>
+          <FooterNavigation
+            question="Já possui uma conta?"
+            link="/login"
+            linkText="Entrar"
+          />
         </Content>
       </Container>
     </>

@@ -131,27 +131,6 @@ export const Content = styled.div`
   }
 `;
 
-export const HaveAccountLink = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: space-evenly;
-height: 4rem; */
-
-  p {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: ${props => props.theme.colors.text};
-  }
-
-  a {
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: ${props => props.theme.colors.primary};
-  }
-`;
-
 export const FieldError = styled.div`
   width: 30vw;
   display: flex;
