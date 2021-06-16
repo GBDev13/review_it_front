@@ -23,7 +23,7 @@ type CreateUserData = {
   email: string;
   password: string;
   is_expert: boolean;
-  picture_url?: string;
+  picture_url?: string | null;
 };
 
 function InvalidEmailErrorMessage() {
@@ -53,13 +53,25 @@ function InvalidURLErrorMessage() {
   );
 }
 
+function MinCharsErrorMessage() {
+  return (
+    <>
+      <RiErrorWarningFill />
+      <span>A senha deve ter no mínimo 8 caracteres</span>
+    </>
+  );
+}
+
 const schemaFormValidation = yup.object().shape({
   nickname: yup.string().required(RequiredFieldErrorMessage),
   email: yup
     .string()
     .email(InvalidEmailErrorMessage)
     .required(RequiredFieldErrorMessage),
-  password: yup.string().required(RequiredFieldErrorMessage),
+  password: yup
+    .string()
+    .min(8, MinCharsErrorMessage)
+    .required(RequiredFieldErrorMessage),
   is_expert: yup.boolean().nullable().required(RequiredFieldErrorMessage),
   picture_url: yup.string().url(InvalidURLErrorMessage)
 });
@@ -74,6 +86,11 @@ export default function Login() {
   });
 
   const handleSignIn: SubmitHandler<CreateUserData> = async data => {
+    if (!data.picture_url) {
+      // eslint-disable-next-line no-param-reassign
+      data.picture_url = null;
+    }
+
     console.log(data);
   };
 
