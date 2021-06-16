@@ -54,6 +54,7 @@ export const Content = styled.div`
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    width: 50%;
 
     input {
       width: 28.4rem;
@@ -85,6 +86,11 @@ export const Content = styled.div`
 
     div {
       align-self: flex-start;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
     }
 
     button {
@@ -150,13 +156,14 @@ export const FlexInput = styled.div`
   align-items: center;
   justify-content: center;
   height: 2.625rem;
+  margin-bottom: 1rem;
 
   a {
     justify-content: center;
     margin-left: 0.5rem;
   }
 
-  input[type='radio'] {
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -169,6 +176,7 @@ export const FlexInput = styled.div`
 
     display: flex;
     align-items: center;
+    margin-top: 1rem;
   }
 
   label:before {
@@ -178,25 +186,17 @@ export const FlexInput = styled.div`
     height: 2rem;
 
     border: 0.35rem solid ${props => props.theme.colors.border};
-    border-radius: 50%;
+    border-radius: 20%;
 
     background: ${props => props.theme.colors.card};
 
-    margin-right: 0.375rem;
+    margin-right: 1rem;
   }
 
-  input[type='radio']:checked + label:before {
+  input[type='checkbox']:checked + label:before {
     width: 1.25rem;
     height: 1.25rem;
     border: 0.75rem solid ${props => props.theme.colors.primary};
     background-color: ${props => props.theme.colors.card};
   }
-`;
-
-export const GridInput = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1.5rem;
-
-  margin: 0 auto;
 `;

@@ -3,8 +3,7 @@ import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { RiErrorWarningFill, RiInformationLine } from 'react-icons/ri';
-import ReactTooltip from 'react-tooltip';
+import { RiErrorWarningFill } from 'react-icons/ri';
 // import { toast } from 'react-toastify';
 
 import React from 'react';
@@ -13,8 +12,7 @@ import {
   LogoContent,
   Content,
   FieldError,
-  FlexInput,
-  GridInput
+  FlexInput
 } from './styles';
 import Input from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
@@ -73,7 +71,7 @@ const schemaFormValidation = yup.object().shape({
     .string()
     .min(8, MinCharsErrorMessage)
     .required(RequiredFieldErrorMessage),
-  is_expert: yup.boolean().nullable().required(RequiredFieldErrorMessage),
+  is_expert: yup.boolean().nullable(),
   picture_url: yup.string().url(InvalidURLErrorMessage)
 });
 
@@ -123,47 +121,29 @@ export default function Login() {
             />
             <FieldError>{errors.password?.message}</FieldError>
 
-            <h2>Tipo de usuário:</h2>
-            <GridInput>
-              <FlexInput>
-                <input
-                  type="radio"
-                  name="isExpert"
-                  value="false"
-                  id="false"
-                  {...register('is_expert')}
-                />
-                <label htmlFor="false">Padrão</label>
-              </FlexInput>
-              <FlexInput>
-                <input
-                  type="radio"
-                  name="isExpert"
-                  value="true"
-                  id="true"
-                  {...register('is_expert')}
-                />
-                <label htmlFor="true">Expert</label>
-                <a data-tip="Se você é experiente em algumas tecnologias e está apto a revisar projetos que as implementam">
-                  <FlexInput>
-                    <RiInformationLine />
-                  </FlexInput>
-                </a>
-                <ReactTooltip
-                  place="bottom"
-                  textColor="#fff"
-                  backgroundColor="#6D55FD"
-                  effect="solid"
-                />
-              </FlexInput>
-            </GridInput>
-            <FieldError>{errors.is_expert?.message}</FieldError>
-
             <Input
               placeholder="URL da foto de perfil"
               {...register('picture_url')}
             />
             <FieldError>{errors.picture_url?.message}</FieldError>
+
+            <p>
+              Expert é o usuário que ajuda os demais realizando reviews e
+              gerando feedbacks
+            </p>
+
+            <FlexInput>
+              <input
+                type="checkbox"
+                name="isExpert"
+                value="true"
+                id="true"
+                {...register('is_expert')}
+              />
+              <label htmlFor="true">Quero ser um expert</label>
+            </FlexInput>
+            <FieldError>{errors.is_expert?.message}</FieldError>
+
             <button type="submit">Cadastrar</button>
           </form>
 
