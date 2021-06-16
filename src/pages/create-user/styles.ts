@@ -141,11 +141,42 @@ export const FlexInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  height: 2.625rem;
 
   input[type='radio'] {
-    width: 1.5rem;
-    margin-right: 1rem;
+    display: none;
+  }
+
+  label {
+    position: relative;
+
+    color: ${props => props.theme.colors.text};
+    font-size: 1.125rem;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+  }
+
+  label:before {
+    content: '';
+
+    width: 2rem;
+    height: 2rem;
+
+    border: 0.35rem solid ${props => props.theme.colors.border};
+    border-radius: 50%;
+
+    background: ${props => props.theme.colors.card};
+
+    margin-right: 0.375rem;
+  }
+
+  input[type='radio']:checked + label:before {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.75rem solid ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.card};
   }
 `;
 

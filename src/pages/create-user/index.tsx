@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -108,7 +109,7 @@ export default function Login() {
               <FlexInput>
                 <input
                   type="radio"
-                  name="standart"
+                  name="isExpert"
                   value="false"
                   id="false"
                   {...register('is_expert')}
@@ -118,7 +119,7 @@ export default function Login() {
               <FlexInput>
                 <input
                   type="radio"
-                  name="expert"
+                  name="isExpert"
                   value="true"
                   id="true"
                   {...register('is_expert')}
