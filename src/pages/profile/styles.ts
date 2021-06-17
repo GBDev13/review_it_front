@@ -118,6 +118,10 @@ export const ProfileGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.5rem;
+
+  @media (max-width: 1150px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const UserCard = styled.div`
@@ -131,6 +135,19 @@ export const UserCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .chart {
+    width: 100%;
+    height: 100%;
+    @media (max-width: 600px) {
+      height: 20rem;
+    }
+  }
 `;
 
 export const UserDataContainer = styled.div`
