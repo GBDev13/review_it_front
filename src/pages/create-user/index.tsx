@@ -17,6 +17,7 @@ import {
 import Input from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
 import FilterList from '../../components/FilterList';
+import { FileInput } from '../../components/FileInput';
 
 type CreateUserData = {
   nickname: string;
@@ -124,11 +125,14 @@ export default function Login() {
             />
             <FieldError>{errors.password?.message}</FieldError>
 
-            <Input
+            {/* <Input
               placeholder="URL da foto de perfil"
               {...register('picture_url')}
             />
-            <FieldError>{errors.picture_url?.message}</FieldError>
+            <FieldError>{errors.picture_url?.message}</FieldError> */}
+
+            <h2>Foto de perfil</h2>
+            <FileInput />
 
             <p>
               Expert é o usuário que ajuda os demais realizando reviews e
