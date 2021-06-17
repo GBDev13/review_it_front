@@ -11,7 +11,7 @@ import {
   UserCard,
   UserDataContainer
 } from './styles';
-import UserChart from './UserChart';
+import UserChart from '../../components/UserChart';
 
 export default function Profile() {
   return (

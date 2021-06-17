@@ -140,14 +140,6 @@ export const UserCard = styled.div`
     flex-direction: column;
     height: auto;
   }
-
-  .chart {
-    width: 100%;
-    height: 100%;
-    @media (max-width: 600px) {
-      height: 20rem;
-    }
-  }
 `;
 
 export const UserDataContainer = styled.div`

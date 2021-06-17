@@ -9,6 +9,16 @@ export const Legends = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 2rem;
+
+  @media (max-width: 600px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 0;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 `;
 
 export const LegendItem = styled.li<LegendItemProps>`
@@ -26,5 +36,16 @@ export const LegendItem = styled.li<LegendItemProps>`
 
   & + & {
     margin-top: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    > div {
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+    & + & {
+      margin-top: 0rem;
+    }
   }
 `;

@@ -1,7 +1,7 @@
 import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 import { UserCard } from '../../pages/profile/styles';
-import { Legends, LegendItem } from './styles';
+import { Legends, LegendItem} from './styles';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
@@ -43,9 +43,7 @@ export default function UserChart() {
       show: false
     },
     chart: {
-      type: 'pie',
-      height: '100%',
-      width: '100%'
+      type: 'pie'
     },
     dataLabels: {
       enabled: true
@@ -69,10 +67,22 @@ export default function UserChart() {
       {
         breakpoint: 600,
         options: {
+          chart: {
+            width: '100%',
+            height: '350px'
+          },
           grid: {
             show: false,
-            borderColor: 'transparent'
-          }
+          },
+        }
+      },
+      {
+        breakpoint: 400,
+        options: {
+          chart: {
+            width: '100%',
+            height: '250px'
+          },
         }
       }
     ]
@@ -80,7 +90,7 @@ export default function UserChart() {
 
   return (
     <UserCard>
-      <Chart options={options} series={series} type="pie" className="chart" />
+        <Chart options={options} series={series} type="pie" width="100%" height="100%"/>
       <Legends>
         {techs.map(tech => (
           <LegendItem key={tech.name} color={tech.color}>
