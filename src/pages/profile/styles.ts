@@ -1,4 +1,3 @@
-import { lighten } from 'polished';
 import styled from 'styled-components';
 
 interface UserPictureProps {
@@ -29,6 +28,7 @@ export const ProfileContent = styled.main`
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 2rem;
+    height: 10rem;
 
     div.navigation {
       a {
@@ -42,7 +42,7 @@ export const ProfileContent = styled.main`
 
           &:hover {
             path {
-              fill: ${props => lighten(0.05, props.theme.colors.textSecondary)};
+              fill: ${props => props.theme.colors.primary};
             }
           }
         }
@@ -54,6 +54,8 @@ export const ProfileContent = styled.main`
     }
 
     @media (max-width: 720px) {
+      height: auto;
+      margin-bottom: 3rem;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -140,49 +142,20 @@ export const UserCard = styled.div`
     flex-direction: column;
     height: auto;
   }
+
+  &.userInfos {
+    height: auto;
+  }
 `;
 
 export const UserDataContainer = styled.div`
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
+  grid-gap: 1rem;
 
-  > div {
-    width: 100%;
-    padding: 1.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: ${props => props.theme.colors.highlight};
-    border-radius: 2rem;
-    box-shadow: 0px 9px 14px 3px rgba(0, 0, 0, 0.1);
-
-    > div {
-      strong {
-        color: ${props => props.theme.colors.textSecondary};
-        font-weight: 300;
-      }
-
-      p {
-        margin: 0;
-        font-weight: 900;
-        font-size: 4.5rem;
-      }
-    }
-
-    svg {
-      width: 5rem;
-      height: 5rem;
-      margin-right: 1rem;
-
-      path {
-        fill: ${props => props.theme.colors.primary};
-      }
-    }
-
-    & + div {
-      margin-top: 1rem;
-    }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
   }
 `;

@@ -1,6 +1,7 @@
-import { AiFillGithub } from 'react-icons/ai';
+import { AiFillGithub, AiFillStar } from 'react-icons/ai';
 import { FaLinkedin } from 'react-icons/fa';
 import { VscFileCode } from 'react-icons/vsc';
+import { GiRank2 } from 'react-icons/gi';
 import { HiCode } from 'react-icons/hi';
 import {
   ProfileContainer,
@@ -12,6 +13,7 @@ import {
   UserDataContainer
 } from './styles';
 import UserChart from '../../components/UserChart';
+import ProfileItem from '../../components/ProfileItem';
 
 export default function Profile() {
   return (
@@ -38,22 +40,12 @@ export default function Profile() {
 
         <ProfileGrid>
           <UserChart />
-          <UserCard>
+          <UserCard className="userInfos">
             <UserDataContainer>
-              <div>
-                <VscFileCode />
-                <div>
-                  <strong>Revisões</strong>
-                  <p>250</p>
-                </div>
-              </div>
-              <div>
-                <HiCode />
-                <div>
-                  <strong>Projetos criados</strong>
-                  <p>12</p>
-                </div>
-              </div>
+              <ProfileItem title="Nível" info={22} icon={<AiFillStar />} />
+              <ProfileItem title="Classificação" info={2} icon={<GiRank2 />} />
+              <ProfileItem title="Revisões" info={250} icon={<VscFileCode />} />
+              <ProfileItem title="Projetos" info={12} icon={<HiCode />} />
             </UserDataContainer>
           </UserCard>
         </ProfileGrid>

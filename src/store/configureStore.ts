@@ -4,8 +4,9 @@ import {
   getDefaultMiddleware
 } from '@reduxjs/toolkit';
 import menus from './modules/menus';
+import user from './modules/user';
 
-const reducer = combineReducers({ menus });
+const reducer = combineReducers({ menus, user });
 
 const store = configureStore({
   reducer,
