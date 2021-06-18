@@ -23,8 +23,9 @@ export const FileInputContainer = styled.div`
     border: 3px solid ${props => props.theme.colors.border};
     border-radius: 0.75rem;
 
-    width: 7.5rem;
     height: 6.25rem;
+
+    padding: 1rem;
 
     cursor: pointer;
 
@@ -32,5 +33,18 @@ export const FileInputContainer = styled.div`
     &:hover {
       background: ${props => lighten(0.05, props.theme.colors.card)};
     }
+  }
+`;
+
+export const FileAddedContainer = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 0 !important;
+
+  p {
+    font-size: 1rem;
   }
 `;

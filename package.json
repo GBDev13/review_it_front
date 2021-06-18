@@ -11,6 +11,7 @@
     "@hookform/resolvers": "^2.5.2",
     "@reduxjs/toolkit": "^1.6.0",
     "apexcharts": "^3.27.1",
+    "axios": "^0.21.1",
     "next": "10.2.3",
     "next-images": "^1.8.1",
     "polished": "^4.1.3",

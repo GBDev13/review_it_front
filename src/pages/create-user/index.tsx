@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import React, { useState } from 'react';
 import {
   Container,
   LogoContent,
@@ -45,15 +46,6 @@ function RequiredFieldErrorMessage() {
   );
 }
 
-function InvalidURLErrorMessage() {
-  return (
-    <>
-      <RiErrorWarningFill />
-      <span>Insira uma URL válida</span>
-    </>
-  );
-}
-
 function MinCharsErrorMessage() {
   return (
     <>
@@ -73,26 +65,45 @@ const schemaFormValidation = yup.object().shape({
     .string()
     .min(8, MinCharsErrorMessage)
     .required(RequiredFieldErrorMessage),
-  is_expert: yup.boolean().nullable(),
-  picture_url: yup.string().url(InvalidURLErrorMessage)
+  is_expert: yup.boolean().nullable()
 });
 
 export default function Login() {
+  const [pictureUrl, setPictureUrl] = useState('');
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<CreateUserData>({
     resolver: yupResolver(schemaFormValidation)
   });
 
   const handleSignIn: SubmitHandler<CreateUserData> = async data => {
+    if (pictureUrl) {
+      data.picture_url = pictureUrl;
+    }
+
     if (!data.picture_url) {
       // eslint-disable-next-line no-param-reassign
       data.picture_url = null;
     }
 
-    console.log(data);
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/api/users',
+        data
+      );
+
+      toast.success(
+        `Usuário ${response.data.user.nickname} criado com sucesso`
+      );
+
+      reset();
+    } catch {
+      toast.error('Erro ao criar o usuário. Tente novamente mais tarde');
+    }
   };
 
   const [isExpert, setIsExpert] = useState(false);
@@ -125,14 +136,8 @@ export default function Login() {
             />
             <FieldError>{errors.password?.message}</FieldError>
 
-            {/* <Input
-              placeholder="URL da foto de perfil"
-              {...register('picture_url')}
-            />
-            <FieldError>{errors.picture_url?.message}</FieldError> */}
-
             <h2>Foto de perfil</h2>
-            <FileInput />
+            <FileInput setProfilePictureUrl={setPictureUrl} />
 
             <p>
               Expert é o usuário que ajuda os demais realizando reviews e
