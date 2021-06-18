@@ -36,7 +36,7 @@ export default createGlobalStyle`
     }
   }
 
-  body {
+  body, textarea {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 400 1rem 'Roboto', sans-serif;
