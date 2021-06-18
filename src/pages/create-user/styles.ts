@@ -93,6 +93,11 @@ export const Content = styled.div`
       margin-top: 1rem;
     }
 
+    h2 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
     button {
       width: 9.973rem;
       height: 2.8rem;
