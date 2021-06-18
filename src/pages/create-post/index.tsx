@@ -14,7 +14,7 @@ import { Container, Content, FieldError } from './styles';
 type PostProps = {
   title: string;
   description: string;
-  codeUrl: string;
+  code_url: string;
 };
 
 function RequiredFieldErrorMessage() {
@@ -38,7 +38,7 @@ function InvalidURLErrorMessage() {
 const schemaFormValidation = yup.object().shape({
   title: yup.string().required(RequiredFieldErrorMessage),
   description: yup.string().required(RequiredFieldErrorMessage),
-  codeUrl: yup
+  code_url: yup
     .string()
     .url(InvalidURLErrorMessage)
     .required(RequiredFieldErrorMessage)
@@ -79,9 +79,9 @@ export default function CreatePost() {
               {...register('description')}
             />
             <FieldError>{errors.description?.message}</FieldError>
-            <label htmlFor="codeUrl">URL do repositório</label>
-            <Input placeholder="" id="codeUrl" {...register('codeUrl')} />
-            <FieldError>{errors.codeUrl?.message}</FieldError>
+            <label htmlFor="code_url">URL do repositório</label>
+            <Input placeholder="" id="code_url" {...register('code_url')} />
+            <FieldError>{errors.code_url?.message}</FieldError>
             <button type="submit">Enviar post</button>
           </form>
         </Content>
