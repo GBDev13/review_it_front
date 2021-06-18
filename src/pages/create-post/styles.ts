@@ -16,7 +16,7 @@ export const Content = styled.div`
 
   form {
     display: flex;
-    height: 80vh;
+    height: 100vh;
     align-items: center;
     flex-direction: column;
 
@@ -36,6 +36,12 @@ export const Content = styled.div`
       height: 10rem;
       max-height: 18rem;
       resize: vertical;
+    }
+
+    section {
+      max-width: 28.4rem;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
     }
 
     button {

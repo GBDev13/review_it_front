@@ -1,28 +1,27 @@
 import { Container, FiltersContainer } from './styles';
 import FilterItem from './FilterItem';
 
-type FilterListProps = {
-  titulo: string;
+type Tech = {
+  name: string;
+  hex_color: string;
+  id: string;
 };
 
-function FilterList({ titulo }: FilterListProps) {
-  const filters = [
-    'Javascript',
-    'Typescript',
-    'ReactJS',
-    'NodeJS',
-    'Java',
-    'Python',
-    'PHP'
-  ];
+type FilterListProps = {
+  title: string;
+  techs: Tech[];
+};
+
+function FilterList({ title, techs }: FilterListProps) {
+  const filters = techs;
 
   return (
     <Container>
-      <h1>{titulo}</h1>
+      <h1>{title}</h1>
 
       <FiltersContainer>
         {filters.map(filter => (
-          <FilterItem key={filter} text={filter} />
+          <FilterItem key={filter.id} text={filter.name} />
         ))}
       </FiltersContainer>
     </Container>

@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
+import { GetStaticProps } from 'next';
 import {
   Container,
   LogoContent,
@@ -27,6 +28,16 @@ type CreateUserData = {
   is_expert: boolean;
   picture_url?: string | null;
 };
+
+type Tech = {
+  name: string;
+  hex_color: string;
+  id: string;
+};
+
+interface SignUpProps {
+  techs: Tech[];
+}
 
 function InvalidEmailErrorMessage() {
   return (
@@ -68,7 +79,7 @@ const schemaFormValidation = yup.object().shape({
   is_expert: yup.boolean().nullable()
 });
 
-export default function Login() {
+export default function SignUp({ techs }: SignUpProps) {
   const [pictureUrl, setPictureUrl] = useState('');
 
   const {
@@ -154,7 +165,7 @@ export default function Login() {
             </FlexInput>
             <FieldError>{errors.is_expert?.message}</FieldError>
 
-            {isExpert && <FilterList titulo="Tecnologias" />}
+            {isExpert && <FilterList title="Tecnologias" techs={techs} />}
 
             <button type="submit">Cadastrar</button>
           </form>
@@ -169,3 +180,13 @@ export default function Login() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get('/technologies');
+  const techs = data.technologies;
+
+  return {
+    props: { techs },
+    revalidate: 60 * 30 * 24 // 48 hours
+  };
+};

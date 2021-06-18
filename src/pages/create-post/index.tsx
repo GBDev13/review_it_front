@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { yupResolver } from '@hookform/resolvers/yup';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import * as yup from 'yup';
+import FilterList from '../../components/FilterList';
 
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
+import { api } from '../../services/api';
 import { Container, Content, FieldError } from './styles';
 
 type PostProps = {
@@ -16,6 +19,15 @@ type PostProps = {
   description: string;
   code_url: string;
 };
+
+type Tech = {
+  name: string;
+  hex_color: string;
+  id: string;
+};
+interface CreatePostProps {
+  techs: Tech[];
+}
 
 function RequiredFieldErrorMessage() {
   return (
@@ -44,7 +56,7 @@ const schemaFormValidation = yup.object().shape({
     .required(RequiredFieldErrorMessage)
 });
 
-export default function CreatePost() {
+export default function CreatePost({ techs }: CreatePostProps) {
   const {
     register,
     handleSubmit,
@@ -79,9 +91,13 @@ export default function CreatePost() {
               {...register('description')}
             />
             <FieldError>{errors.description?.message}</FieldError>
+
             <label htmlFor="code_url">URL do repositório</label>
             <Input placeholder="" id="code_url" {...register('code_url')} />
             <FieldError>{errors.code_url?.message}</FieldError>
+
+            <FilterList title="Tecnologias" techs={techs} />
+
             <button type="submit">Enviar post</button>
           </form>
         </Content>
@@ -89,3 +105,13 @@ export default function CreatePost() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get('/technologies');
+  const techs = data.technologies;
+
+  return {
+    props: { techs },
+    revalidate: 60 * 30 * 24 // 48 hours
+  };
+};
