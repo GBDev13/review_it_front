@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import { MdPhotoCamera } from 'react-icons/md';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import { api } from '../../services/api';
 
 import { FileInputContainer, FileAddedContainer } from './styles';
 
@@ -28,10 +28,7 @@ export function FileInput({ setProfilePictureUrl }: FileInputProps) {
     formData.append('file', event.target.files[0]);
 
     try {
-      const response = await axios.post(
-        'http://localhost:4000/ap/files',
-        formData
-      );
+      const response = await api.post('/files', formData);
 
       setProfilePictureUrl(response.data.response.image_url);
     } catch {

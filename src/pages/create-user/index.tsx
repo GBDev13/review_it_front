@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 import {
   Container,
@@ -19,6 +18,7 @@ import Input from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
 import FilterList from '../../components/FilterList';
 import { FileInput } from '../../components/FileInput';
+import { api } from '../../services/api';
 
 type CreateUserData = {
   nickname: string;
@@ -91,10 +91,7 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:4000/api/users',
-        data
-      );
+      const response = await api.post('/users', data);
 
       toast.success(
         `Usuário ${response.data.user.nickname} criado com sucesso`
