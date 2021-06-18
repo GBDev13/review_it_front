@@ -1,4 +1,4 @@
-import { MdAttachMoney, MdPerson, MdDateRange } from 'react-icons/md';
+import { RiCoinsLine, RiUser3Line, RiCalendarLine } from 'react-icons/ri';
 import { CardContainer, TechContainer, FlexContainer } from './styles';
 
 export default function Card() {
@@ -18,15 +18,15 @@ export default function Card() {
 
       <FlexContainer>
         <div>
-          <MdAttachMoney />
+          <RiCoinsLine />
           <span>R$50</span>
         </div>
         <div>
-          <MdPerson />
+          <RiUser3Line />
           <span>Unknown</span>
         </div>
         <div>
-          <MdDateRange />
+          <RiCalendarLine />
           <span>12/12/2012</span>
         </div>
       </FlexContainer>
