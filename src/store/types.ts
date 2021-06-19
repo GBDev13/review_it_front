@@ -5,12 +5,14 @@ export interface IMenus {
 }
 
 export interface IUser {
-  username: string;
+  id: string | null;
+  is_expert: boolean | null;
+  picture_url: string;
+  nickname: string;
   email: string;
   isFetching: boolean;
   isSuccess: boolean;
   isError: boolean;
-  errorMessage: string;
 }
 
 export interface IState extends DefaultRootState {

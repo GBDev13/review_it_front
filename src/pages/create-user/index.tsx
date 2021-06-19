@@ -8,6 +8,7 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
 import { GetStaticProps } from 'next';
+import { useDispatch } from 'react-redux';
 import {
   Container,
   LogoContent,
@@ -20,6 +21,7 @@ import FooterNavigation from '../../components/FooterNavigation';
 import FilterList from '../../components/FilterList';
 import { FileInput } from '../../components/FileInput';
 import { api } from '../../services/api';
+import { signupUser } from '../../store/modules/user';
 
 type CreateUserData = {
   nickname: string;
@@ -82,6 +84,8 @@ const schemaFormValidation = yup.object().shape({
 export default function SignUp({ techs }: SignUpProps) {
   const [pictureUrl, setPictureUrl] = useState('');
 
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -102,11 +106,7 @@ export default function SignUp({ techs }: SignUpProps) {
     }
 
     try {
-      const response = await api.post('/users', data);
-
-      toast.success(
-        `Usuário ${response.data.user.nickname} criado com sucesso`
-      );
+      dispatch(signupUser(data));
 
       reset();
     } catch {

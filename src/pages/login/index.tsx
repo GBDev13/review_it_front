@@ -5,12 +5,12 @@ import * as yup from 'yup';
 import { RiErrorWarningFill } from 'react-icons/ri';
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Container, LogoContent, Content, FieldError } from './styles';
 import Input from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
-import { IState } from '../../store/types';
 import { loginUser } from '../../store/modules/user';
+import { withSSRGuest } from '../../utils/withSSRGuest';
 
 type SignInFormData = {
   email: string;
@@ -52,13 +52,10 @@ export default function Login() {
     resolver: yupResolver(schemaFormValidation)
   });
 
-  const { user } = useSelector((state: IState) => state);
   const dispatch = useDispatch();
 
   const handleSignIn: SubmitHandler<SignInFormData> = async data => {
-    console.log(data);
     dispatch(loginUser(data));
-    console.log(user);
   };
 
   return (
@@ -99,3 +96,7 @@ export default function Login() {
     </>
   );
 }
+
+export const getServerSideProps = withSSRGuest(async ctx => ({
+  props: {}
+}));

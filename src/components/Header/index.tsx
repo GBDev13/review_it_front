@@ -1,13 +1,16 @@
+import Link from 'next/link';
 import { HiMenuAlt2 } from 'react-icons/hi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleMobileMenu } from '../../store/modules/menus';
+import { IState } from '../../store/types';
 import Input from '../Input';
 import NavLink from './NavLink';
-import Notification from './Notification';
+import Logout from './Logout';
 import { Container, UserProfile } from './styles';
 
 function Header() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state: IState) => state);
 
   function handleOpenMenu() {
     dispatch(toggleMobileMenu(true));
@@ -30,8 +33,14 @@ function Header() {
 
         <section>
           <Input placeholder="Buscar projetos" />
-          <UserProfile url="https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png" />
-          <Notification />
+          <Link href={`profile/${user.id}`}>
+            <a>
+              <UserProfile
+                url={user.picture_url || '/defaultuserpicture.png'}
+              />
+            </a>
+          </Link>
+          <Logout />
           <HiMenuAlt2 className="mobileMenu" onClick={handleOpenMenu} />
         </section>
       </div>

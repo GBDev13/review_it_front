@@ -3,16 +3,22 @@ import {
   configureStore,
   getDefaultMiddleware
 } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import menus from './modules/menus';
 import user from './modules/user';
 
-const reducer = combineReducers({ menus, user });
+const persistConfig = {
+  key: 'root',
+  storage
+};
+
+const reducers = combineReducers({ menus, user });
+const reducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer,
-  middleware: getDefaultMiddleware({
-    serializableCheck: false
-  })
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 export default store;
