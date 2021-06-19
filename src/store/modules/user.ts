@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Router from 'next/router';
+import { destroyCookie, setCookie } from 'nookies';
+import { toast } from 'react-toastify';
 import { api } from '../../services/api';
+import { IUser } from '../types';
 
 interface UserData {
-  name: string;
+  nickname: string;
   email: string;
+  is_expert: boolean;
+  picture_url?: string | null;
   password: string;
 }
 
@@ -15,63 +20,66 @@ interface LoginData {
 
 export const signupUser = createAsyncThunk(
   'users/signupUser',
-  async ({ name, email, password }: UserData, thunkAPI) => {
-    try {
-      const response = await api.post('users', {
-        name,
-        email,
-        password
-      });
-      console.log('data', response.data);
+  async (
+    { nickname, email, is_expert, picture_url, password }: UserData,
+    thunkAPI
+  ) => {
+    const response = await api.post('users', {
+      nickname,
+      email,
+      is_expert,
+      picture_url,
+      password
+    });
 
-      if (response.status === 200) {
-        localStorage.setItem('token', response.data.token);
-        return { ...response.data, nickname: name, email };
-      }
-      return thunkAPI.rejectWithValue(response.data);
-    } catch (e) {
-      console.log('Error', e);
-      return thunkAPI.rejectWithValue(e);
+    if (response.status !== 201) {
+      return thunkAPI.rejectWithValue(response);
     }
+
+    setCookie(undefined, 'reviewit.token', response.data.token, {
+      maxAge: 60 * 60 * 24 * 2, // 2 dias
+      path: '/'
+    });
+    Router.push('/');
+
+    return { ...response.data };
   }
 );
 
 export const loginUser = createAsyncThunk(
   'users/login',
   async ({ email, password }: LoginData, thunkAPI) => {
-    try {
-      const response = await api.post('sessions', {
-        email,
-        password
-      });
-
-      console.log('response', response.data);
-      if (response.status === 200) {
-        localStorage.setItem('token', response.data.token);
-        Router.push('/');
-        return {
-          email: response.data.user.email,
-          nickname: response.data.user.nickname
-        };
-      }
-      return thunkAPI.rejectWithValue(response.data);
-    } catch (e) {
-      console.log('Error', e);
-      thunkAPI.rejectWithValue(e);
+    const response = await api.post('sessions', {
+      email,
+      password
+    });
+    if (response.status !== 200) {
+      return thunkAPI.rejectWithValue(response);
     }
+    setCookie(undefined, 'reviewit.token', response.data.token, {
+      maxAge: 60 * 60 * 24 * 2, // 2 dias
+      path: '/'
+    });
+    Router.push('/');
+
+    return { ...response.data };
   }
 );
 
+const initialState: IUser = {
+  id: null,
+  nickname: '',
+  email: '',
+  is_expert: null,
+  picture_url: '',
+  isFetching: false,
+  isSuccess: false,
+  isError: false
+};
+
 export const slice = createSlice({
   name: 'user',
-  initialState: {
-    nickname: '',
-    email: '',
-    isFetching: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: ''
-  },
+  initialState,
   reducers: {
     clearState: state => {
       state.isError = false;
@@ -79,40 +87,68 @@ export const slice = createSlice({
       state.isFetching = false;
 
       return state;
+    },
+    signOut: state => {
+      destroyCookie(undefined, 'reviewit.token');
+      destroyCookie(undefined, 'reviewit.refreshToken');
+      state.id = null;
+      state.nickname = '';
+      state.email = '';
+      state.is_expert = null;
+      state.picture_url = '';
+
+      Router.push('/login');
     }
   },
   extraReducers: builder => {
+    builder.addCase(signupUser.pending, state => {
+      state.isFetching = true;
+    });
+    builder.addCase(signupUser.rejected, state => {
+      state.isFetching = false;
+      state.isError = true;
+
+      toast.error(
+        'Ocorreu um erro ao criar a conta 😢. Por favor, tente novamente!'
+      );
+    });
     builder.addCase(signupUser.fulfilled, (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
       state.email = payload.user.email;
-      state.nickname = payload.nickname;
-    });
-    builder.addCase(signupUser.pending, state => {
-      state.isFetching = true;
-    });
-    builder.addCase(signupUser.rejected, (state, { payload }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload.message;
-    });
-    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
-      state.email = payload.email;
-      state.nickname = payload.nickname;
-      state.isFetching = false;
-      state.isSuccess = true;
-      return state;
-    });
-    builder.addCase(loginUser.rejected, (state, { payload }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload.message;
+      state.nickname = payload.user.nickname;
+      state.is_expert = payload.user.is_expert;
+      state.picture_url = payload.user.picture_url;
+      state.id = payload.user.id;
+
+      toast.success(
+        `Sua conta foi criada com sucesso! Bem-vindo(a) ${payload.user.nickname} 😁`
+      );
     });
     builder.addCase(loginUser.pending, state => {
       state.isFetching = true;
     });
+    builder.addCase(loginUser.rejected, state => {
+      state.isFetching = false;
+      state.isError = true;
+
+      toast.error('Os dados informados estão incorretos.');
+    });
+
+    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.email = payload.user.email;
+      state.nickname = payload.user.nickname;
+      state.is_expert = payload.user.is_expert;
+      state.picture_url = payload.user.picture_url;
+      state.isFetching = false;
+      state.isSuccess = true;
+      api.defaults.headers.Authorization = `Bearer ${payload.token}`;
+
+      toast.success(`Você entrou! Bem-vindo(a) de volta ${state.nickname} 😁`);
+      return state;
+    });
   }
 });
 
-export const { clearState } = slice.actions;
+export const { clearState, signOut } = slice.actions;
 export default slice.reducer;

@@ -9,10 +9,6 @@ interface NavLinkProps {
   isActive: boolean;
 }
 
-interface NotificationProps {
-  hasNotification: boolean;
-}
-
 export const Container = styled.div`
   width: 100%;
   padding: 1rem 2rem;
@@ -133,38 +129,22 @@ export const UserProfile = styled.div<UserProfileProps>`
   }
 `;
 
-export const NotificationContainer = styled.div<NotificationProps>`
+export const LogoutContainer = styled.div`
   width: 3rem;
   height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  color: ${props => props.theme.colors.textSecondary};
   svg {
     width: 2.5rem;
     height: 2.5rem;
     transition: 0.5s;
     cursor: pointer;
+  }
 
-    path {
-      fill: ${props =>
-        props.hasNotification
-          ? props.theme.colors.primary
-          : props.theme.colors.textSecondary};
-      transition: 0.5s;
-    }
-
-    &:hover {
-      width: 3rem;
-      height: 3rem;
-
-      path {
-        fill: ${props =>
-          props.hasNotification
-            ? lighten(0.05, props.theme.colors.primary)
-            : lighten(0.05, props.theme.colors.textSecondary)};
-      }
-    }
+  &:hover {
+    color: ${props => lighten(0.05, props.theme.colors.textSecondary)};
   }
 
   @media (max-width: 650px) {
@@ -173,10 +153,6 @@ export const NotificationContainer = styled.div<NotificationProps>`
     svg {
       width: 2rem;
       height: 2rem;
-      &:hover {
-        width: 2rem;
-        height: 2rem;
-      }
     }
   }
 `;

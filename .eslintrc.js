@@ -31,6 +31,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
-    'no-param-reassign':'off'
+    'no-param-reassign':'off',
+    'import/no-cycle': 'off',
   }
 };
