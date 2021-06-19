@@ -16,9 +16,11 @@ export const Content = styled.div`
 
   form {
     display: flex;
-    height: 100vh;
+    height: 100%;
     align-items: center;
     flex-direction: column;
+
+    margin-bottom: 5%;
 
     label {
       color: ${props => props.theme.colors.text};
