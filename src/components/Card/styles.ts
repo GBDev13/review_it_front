@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   width: 100%;
-  height: 11.25rem;
 
   display: flex;
   flex-direction: column;
@@ -60,8 +59,10 @@ export const TechContainer = styled.div`
     align-items: center;
     justify-content: center;
 
-    width: 3.75rem;
+    min-width: 3.75rem;
     height: 1.375rem;
+
+    padding: 0 1%;
 
     background: ${props => props.theme.colors.primary};
 
