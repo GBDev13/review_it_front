@@ -8,7 +8,7 @@ type CardProps = {
   description: string;
   author: string;
   inserted_at: string;
-  techs: Tech[];
+  technologies: Tech[];
 };
 
 type Tech = {
@@ -20,7 +20,7 @@ export default function Card({
   title,
   description,
   author,
-  techs,
+  technologies,
   inserted_at
 }: CardProps) {
   return (
@@ -30,7 +30,7 @@ export default function Card({
       <p>{description}</p>
 
       <TechContainer>
-        {techs.map(tech => (
+        {technologies.map(tech => (
           <div key={tech.id}>{tech.name}</div>
         ))}
       </TechContainer>
@@ -42,7 +42,6 @@ export default function Card({
         </div>
         <div>
           <RiCalendarLine />
-
           <span>
             {format(new Date(inserted_at), 'P', {
               locale: ptBR

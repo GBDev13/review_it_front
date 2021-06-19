@@ -26,7 +26,9 @@ type CardProps = {
   inserted_at: string;
   id: string;
   author: Author;
-  techs: Tech[];
+  technologies: Tech[];
+  code_url: string;
+  star_review: string | null;
 };
 interface HomeProps {
   techs: Tech[];

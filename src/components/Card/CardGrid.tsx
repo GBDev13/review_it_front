@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Card from '.';
 import { CardGridContainer } from './styles';
 
@@ -27,14 +28,17 @@ export default function CardGrid({ cards }: CardGridProps) {
   return (
     <CardGridContainer>
       {cards.map(card => (
-        <Card
-          key={card.id}
-          title={card.title}
-          description={card.description}
-          inserted_at={card.inserted_at}
-          author={card.author.nickname}
-          techs={card.technologies}
-        />
+        <Link key={card.id} href={`/post/${card.id}`}>
+          <div>
+            <Card
+              title={card.title}
+              description={card.description}
+              inserted_at={card.inserted_at}
+              author={card.author.nickname}
+              technologies={card.technologies}
+            />
+          </div>
+        </Link>
       ))}
     </CardGridContainer>
   );

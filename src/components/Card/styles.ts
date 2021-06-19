@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   width: 100%;
+  height: 18rem;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 
   padding: 1rem;
 
@@ -15,6 +16,11 @@ export const CardContainer = styled.div`
   border-radius: 1.875rem;
   transition: 0.5s;
   cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   &:hover {
     border-color: ${props => props.theme.colors.primary};
