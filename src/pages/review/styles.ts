@@ -18,7 +18,7 @@ export const ReviewContent = styled.div`
     width: 9.973rem;
     height: 2.8rem;
 
-    margin: 3rem 0;
+    margin-bottom: 3rem;
 
     border: 0;
     border-radius: 1.25rem;
@@ -79,6 +79,10 @@ export const InfoContainer = styled.div`
     &:first-child {
       margin-right: 2rem;
     }
+
+    &.user {
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 980px) {
@@ -96,12 +100,39 @@ export const InfoContainer = styled.div`
   }
 `;
 
+export const ReviewButtonContainer = styled.div`
+  margin: 5rem 0;
+
+  div.star {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.5rem;
+      transition: 0.5s;
+    }
+
+    p {
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 1.5rem;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      color: ${props => props.theme.colors.primary};
+    }
+  }
+`;
+
 export const FeedbackContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 61.25rem;
 
-  margin-top: 4.5rem;
+  & + & {
+    margin-top: 4.5rem;
+  }
 
   h2 {
     font-size: 2.8rem;

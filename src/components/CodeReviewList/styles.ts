@@ -27,7 +27,8 @@ export const CodeReviewContainer = styled.div`
 
   &:hover {
     h3,
-    p {
+    p,
+    svg {
       color: ${props => props.theme.colors.primary};
     }
 
@@ -92,6 +93,21 @@ export const CodeReviewUserInfos = styled.div`
       }
     }
 
+    span {
+      font-weight: 300;
+      color: ${props => props.theme.colors.textSecondary};
+    }
+
+    > svg {
+      width: 2rem;
+      height: 2rem;
+      margin-left: 1rem;
+      transition: 0.5s;
+      &:hover {
+        color: ${props => props.theme.colors.primary};
+      }
+    }
+
     @media (max-width: 768px) {
       img {
         width: 3rem;
@@ -117,10 +133,5 @@ export const CodeReviewUserInfos = styled.div`
         margin-bottom: 1rem;
       }
     }
-  }
-
-  span {
-    font-weight: 300;
-    color: ${props => props.theme.colors.textSecondary};
   }
 `;

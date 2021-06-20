@@ -22,13 +22,18 @@ export interface IReviews {
 
 interface CodeReviewListProps {
   reviews: IReviews[];
+  starReviewId: string;
 }
 
-function CodeReviewList({ reviews }: CodeReviewListProps) {
+function CodeReviewList({ reviews, starReviewId }: CodeReviewListProps) {
   return (
     <Container>
       {reviews.map(review => (
-        <CodeReviewItem review={review} key={review.id} />
+        <CodeReviewItem
+          review={review}
+          key={review.id}
+          star={starReviewId === review.id}
+        />
       ))}
     </Container>
   );

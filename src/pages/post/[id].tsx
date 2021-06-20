@@ -26,6 +26,10 @@ import {
 import CodeReviewList, { IReviews } from '../../components/CodeReviewList';
 import { IState } from '../../store/types';
 
+interface IStarReview {
+  id: string;
+}
+
 type PostProps = {
   post: {
     id: string;
@@ -36,13 +40,15 @@ type PostProps = {
     author: {
       nickname: string;
     };
-    star_review: string | null;
+    star_review: IStarReview | null;
   };
   reviews: IReviews[];
 };
 
 export default function Post({ post, reviews }: PostProps) {
   const { user } = useSelector((state: IState) => state);
+
+  const starReviewId = post.star_review.id;
 
   return (
     <>
@@ -94,7 +100,7 @@ export default function Post({ post, reviews }: PostProps) {
             </h2>
 
             {reviews.length > 0 ? (
-              <CodeReviewList reviews={reviews} />
+              <CodeReviewList reviews={reviews} starReviewId={starReviewId} />
             ) : (
               <p>Não há code reviews para este post ainda.</p>
             )}
@@ -110,14 +116,6 @@ export default function Post({ post, reviews }: PostProps) {
               Criar Review
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => {
-              Router.push(`/review/${post.id}`);
-            }}
-          >
-            Ver Review
-          </button>
         </PostContent>
       </PostContainer>
     </>
