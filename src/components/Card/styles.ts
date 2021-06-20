@@ -43,7 +43,7 @@ export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0.8rem;
+    padding: 1rem;
 
     h1 {
       font-size: 1.4rem;
