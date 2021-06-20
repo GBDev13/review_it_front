@@ -29,6 +29,7 @@ type CreateUserData = {
   password: string;
   is_expert: boolean;
   picture_url?: string | null;
+  technologies: String[];
 };
 
 type Tech = {
@@ -83,6 +84,8 @@ const schemaFormValidation = yup.object().shape({
 
 export default function SignUp({ techs }: SignUpProps) {
   const [pictureUrl, setPictureUrl] = useState('');
+  const [isExpert, setIsExpert] = useState(false);
+  const [currentTechs, setCurrentTechs] = useState<String[]>([]);
 
   const dispatch = useDispatch();
 
@@ -105,6 +108,13 @@ export default function SignUp({ techs }: SignUpProps) {
       data.picture_url = null;
     }
 
+    if (isExpert && currentTechs.length < 1) {
+      toast.error('Selecione pelo menos uma tecnologia');
+      return;
+    }
+
+    data.technologies = currentTechs;
+
     try {
       dispatch(signupUser(data));
 
@@ -113,8 +123,6 @@ export default function SignUp({ techs }: SignUpProps) {
       toast.error('Erro ao criar o usuário. Tente novamente mais tarde');
     }
   };
-
-  const [isExpert, setIsExpert] = useState(false);
 
   return (
     <>
@@ -165,7 +173,13 @@ export default function SignUp({ techs }: SignUpProps) {
             </FlexInput>
             <FieldError>{errors.is_expert?.message}</FieldError>
 
-            {isExpert && <FilterList title="Tecnologias" techs={techs} />}
+            {isExpert && (
+              <FilterList
+                title="Tecnologias"
+                techs={techs}
+                setCurrentItens={setCurrentTechs}
+              />
+            )}
 
             <button type="submit">Cadastrar</button>
           </form>
