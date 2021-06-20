@@ -52,7 +52,8 @@ export const Content = styled.div`
       width: 100%;
 
       &:first-child {
-        width: 28.5rem;
+        min-width: 28.5rem;
+        height: 9rem;
         margin-top: 1.5rem;
       }
     }
