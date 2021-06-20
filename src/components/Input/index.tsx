@@ -4,7 +4,9 @@ import { InputContainer } from './styles';
 interface InputProps {
   placeholder: string;
   type?: string;
+  value?: string | number;
   id?: string;
+  onChange?: (event: any) => void;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
