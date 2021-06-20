@@ -47,7 +47,7 @@ export default function Ranking({ ranks }: RankingProps) {
 
         <RankingPictures>
           {formattedFirstThree.map((item, index) => (
-            <RankingUser middle={index === 1}>
+            <RankingUser middle={index === 1} key={item.id}>
               <div>
                 <p>{item.position}</p>
                 {index === 1 ? <BiCrown /> : <IoIosArrowDown />}

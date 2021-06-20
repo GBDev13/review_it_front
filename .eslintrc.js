@@ -35,6 +35,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'jsx-a11y/alt-text': 'off',
     '@typescript-eslint/no-unused-expressions': 'off',
-    '@typescript-eslint/naming-convention': 'off'
+    '@typescript-eslint/naming-convention': 'off',
+    'prefer-destructuring': 'off'
   }
 };

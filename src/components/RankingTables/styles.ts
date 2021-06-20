@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface RankingItemProps {
+  isMe: boolean;
+}
 
 export const Container = styled.div`
   width: 100%;
@@ -13,7 +17,7 @@ export const Container = styled.div`
   margin: 5rem auto;
 `;
 
-export const RankingItemContainer = styled.div`
+export const RankingItemContainer = styled.div<RankingItemProps>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -49,6 +53,12 @@ export const RankingItemContainer = styled.div`
         filter: brightness(1.3);
       }
     }
+
+    ${props =>
+      props.isMe &&
+      css`
+        border-color: ${props.theme.colors.primary};
+      `}
 
     > div.img {
       transition: 0.5s;

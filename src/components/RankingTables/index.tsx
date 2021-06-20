@@ -1,23 +1,51 @@
+import { useState, useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
 import { RankingProps } from '../../pages/ranking';
+import { api } from '../../services/api';
+import { IState } from '../../store/types';
 import RankingItem from './RankingItem';
 import { Container } from './styles';
 
 function RankingTables({ ranks }: RankingProps) {
-  const userPosition = {
-    id: 3,
-    name: 'Você',
-    picture_url:
-      'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBlb3BsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    ranking: 54,
-    experience: 566
-  };
+  const { user } = useSelector((state: IState) => state);
+
+  const [loading, setLoading] = useState(false);
+  const [userPosition, setUserPosition] = useState(null);
+
+  const userIsTop = ranks.find(rank => rank.user.id === user?.id);
+
+  useEffect(() => {
+    async function getUserRank() {
+      if (loading) return;
+      try {
+        setLoading(true);
+        const { data } = await api.get(`users/${user.id}/rank`);
+
+        setUserPosition(data.rank);
+      } catch {
+        return;
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (user?.is_expert) {
+      getUserRank();
+    }
+  }, []);
 
   return (
     <Container>
       {ranks.map(rankItem => (
-        <RankingItem key={rankItem.id} rankItem={rankItem} />
+        <RankingItem
+          key={rankItem.id}
+          rankItem={rankItem}
+          isMe={rankItem.user.id === user?.id}
+        />
       ))}
-      {/* <RankingItem rankItem={userPosition} /> */}
+      {!userIsTop && user?.is_expert && user?.id && (
+        <RankingItem rankItem={userPosition} isMe />
+      )}
     </Container>
   );
 }

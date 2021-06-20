@@ -3,22 +3,26 @@ import { RankingItemContainer } from './styles';
 
 interface RankingItemProps {
   rankItem: IRank;
+  isMe?: boolean;
 }
 
-export default function RankingItem({ rankItem }: RankingItemProps) {
+export default function RankingItem({
+  rankItem,
+  isMe = false
+}: RankingItemProps) {
   return (
-    <RankingItemContainer>
-      <strong>{rankItem.position}</strong>
+    <RankingItemContainer isMe={isMe}>
+      <strong>{rankItem?.position}</strong>
       <div>
         <div className="img">
           <img
             src={rankItem?.user?.picture_url || '/defaultuserpicture.png'}
-            alt={rankItem.user.nickname}
+            alt={rankItem?.user?.nickname}
           />
         </div>
         <section>
-          <p>{rankItem.user.nickname}</p>
-          <strong>{rankItem.user.score} xp</strong>
+          <p>{isMe ? 'Você' : rankItem?.user?.nickname}</p>
+          <strong>{rankItem?.user?.score} xp</strong>
         </section>
       </div>
     </RankingItemContainer>
