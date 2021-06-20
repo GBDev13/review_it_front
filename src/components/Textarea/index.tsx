@@ -1,3 +1,4 @@
+import { forwardRef, ForwardRefRenderFunction } from 'react';
 import { TextareaContainer } from './styles';
 
 interface TextareaProps {
@@ -5,13 +6,17 @@ interface TextareaProps {
   id?: string;
 }
 
-export default function Textarea({ placeholder, id, ...rest }: TextareaProps) {
-  return (
-    <TextareaContainer
-      placeholder={placeholder}
-      id={id}
-      {...rest}
-      hasValue={false}
-    />
-  );
-}
+const TextareaBase: ForwardRefRenderFunction<
+  HTMLTextAreaElement,
+  TextareaProps
+> = ({ placeholder, id, ...rest }, ref) => (
+  <TextareaContainer
+    placeholder={placeholder}
+    id={id}
+    {...rest}
+    hasValue={false}
+    ref={ref}
+  />
+);
+
+export const Textarea = forwardRef(TextareaBase);

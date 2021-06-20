@@ -12,7 +12,7 @@ import FilterList from '../../components/FilterList';
 
 import Header from '../../components/Header';
 import { Input } from '../../components/Input';
-import Textarea from '../../components/Textarea';
+import { Textarea } from '../../components/Textarea';
 import { api } from '../../services/api';
 import { Container, Content, FieldError } from './styles';
 
