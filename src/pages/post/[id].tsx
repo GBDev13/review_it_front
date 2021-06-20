@@ -110,6 +110,14 @@ export default function Post({ post, reviews }: PostProps) {
               Criar Review
             </button>
           )}
+          <button
+            type="button"
+            onClick={() => {
+              Router.push(`/review/${post.id}`);
+            }}
+          >
+            Ver Review
+          </button>
         </PostContent>
       </PostContainer>
     </>

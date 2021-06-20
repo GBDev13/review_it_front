@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import {
@@ -37,9 +37,11 @@ export default function Review({ review, postOwner }: ReviewProps) {
 
   const { user } = useSelector((state: IState) => state);
 
-  if (postOwner === user.id) {
-    setCanStar(true);
-  }
+  useEffect(() => {
+    if (postOwner === user.id) {
+      setCanStar(true);
+    }
+  }, []);
 
   const handleGiveStar = async () => {
     try {
@@ -137,6 +139,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const review = reviews[0];
 
   const postOwner = data.post.author.id;
+
+  console.log(review);
 
   return {
     props: { review, postOwner }
