@@ -8,7 +8,7 @@ import { Container } from './styles';
 import { toggleMobileMenu } from '../../store/modules/menus';
 
 function MobileMenu() {
-  const { menus } = useSelector((state: IState) => state);
+  const { menus, user } = useSelector((state: IState) => state);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -27,8 +27,9 @@ function MobileMenu() {
         <>
           <AiOutlineCloseCircle onClick={handleCloseMenu} />
           <div>
-            <section>
-              <p>user e notificações</p>
+            <section onClick={() => handleRedirect(`/profile/${user.id}`)}>
+              <img src={user?.picture_url || '/defaultuserpicture.png'} />
+              <p>{user.nickname}</p>
             </section>
             <nav>
               <a onClick={() => handleRedirect('/')}>Home</a>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,7 +8,7 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
 import { GetStaticProps } from 'next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   LogoContent,
@@ -21,7 +21,8 @@ import FooterNavigation from '../../components/FooterNavigation';
 import FilterList from '../../components/FilterList';
 import { FileInput } from '../../components/FileInput';
 import { api } from '../../services/api';
-import { signupUser } from '../../store/modules/user';
+import { clearState, signupUser } from '../../store/modules/user';
+import { IState } from '../../store/types';
 
 type CreateUserData = {
   nickname: string;
@@ -101,6 +102,26 @@ export default function SignUp({ techs }: SignUpProps) {
   const [currentTechs, setCurrentTechs] = useState<String[]>([]);
 
   const dispatch = useDispatch();
+
+  const { user } = useSelector((state: IState) => state);
+  const { isSuccess, isError } = user;
+
+  useEffect(
+    () => () => {
+      dispatch(clearState());
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clearState());
+    }
+
+    if (isError) {
+      dispatch(clearState());
+    }
+  }, [isSuccess, isError]);
 
   const {
     register,

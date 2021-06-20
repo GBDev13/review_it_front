@@ -5,6 +5,8 @@ import { GiRank2 } from 'react-icons/gi';
 import { HiCode } from 'react-icons/hi';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { TiArrowLeftThick } from 'react-icons/ti';
+import { useRouter } from 'next/router';
 import {
   ProfileContainer,
   UserPicture,
@@ -60,13 +62,17 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
     (sumTotal, review) => sumTotal + review.reviews,
     0
   );
+
+  const router = useRouter();
   return (
     <>
       <Head>
         <title>review.it | {user.nickname}</title>
       </Head>
       <ProfileContainer>
-        <header />
+        <header>
+          <TiArrowLeftThick onClick={() => router.back()} />
+        </header>
         <ProfileContent>
           <section className="profileSection">
             <UserSection>

@@ -4,6 +4,11 @@ export interface IMenus {
   mobileIsOpen: boolean;
 }
 
+export interface IFilters {
+  techFilters: String[];
+  currentSearch: string;
+}
+
 export interface IUser {
   id: string | null;
   is_expert: boolean | null;
@@ -21,4 +26,5 @@ export interface IUser {
 export interface IState extends DefaultRootState {
   menus: IMenus;
   user: IUser;
+  filters: IFilters;
 }

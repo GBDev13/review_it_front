@@ -23,6 +23,7 @@ export const Container = styled.div`
       font-weight: 400;
       font-size: 4rem;
       margin-right: 5rem;
+      cursor: pointer;
 
       span {
         color: ${props => props.theme.colors.primary};

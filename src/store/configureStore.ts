@@ -15,13 +15,15 @@ import {
 import storage from 'redux-persist/lib/storage';
 import menus from './modules/menus';
 import user from './modules/user';
+import filters from './modules/filters';
 
 const persistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['filters']
 };
 
-const reducers = combineReducers({ menus, user });
+const reducers = combineReducers({ menus, user, filters });
 const reducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
