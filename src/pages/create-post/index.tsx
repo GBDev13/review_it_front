@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { GetStaticProps } from 'next';
+import Router from 'next/router';
 import Head from 'next/head';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RiErrorWarningFill } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import FilterList from '../../components/FilterList';
 
@@ -18,6 +20,7 @@ type PostProps = {
   title: string;
   description: string;
   code_url: string;
+  technologies: String[];
 };
 
 type Tech = {
@@ -47,9 +50,33 @@ function InvalidURLErrorMessage() {
   );
 }
 
+function MinCharsTitleErrorMessage() {
+  return (
+    <>
+      <RiErrorWarningFill />
+      <span>O título deve ter no mínimo 10 caracteres</span>
+    </>
+  );
+}
+
+function MinCharsDescriptionErrorMessage() {
+  return (
+    <>
+      <RiErrorWarningFill />
+      <span>A descrição deve ter no mínimo 20 caracteres</span>
+    </>
+  );
+}
+
 const schemaFormValidation = yup.object().shape({
-  title: yup.string().required(RequiredFieldErrorMessage),
-  description: yup.string().required(RequiredFieldErrorMessage),
+  title: yup
+    .string()
+    .min(10, MinCharsTitleErrorMessage)
+    .required(RequiredFieldErrorMessage),
+  description: yup
+    .string()
+    .min(20, MinCharsDescriptionErrorMessage)
+    .required(RequiredFieldErrorMessage),
   code_url: yup
     .string()
     .url(InvalidURLErrorMessage)
@@ -68,7 +95,23 @@ export default function CreatePost({ techs }: CreatePostProps) {
   });
 
   const handlePostSubmit: SubmitHandler<PostProps> = async data => {
-    console.log(data);
+    if (currentTechs.length < 1) {
+      toast.error('Selecione pelo menos uma tecnologia');
+      return;
+    }
+
+    data.technologies = currentTechs;
+
+    try {
+      const response = await api.post('/posts', data);
+
+      if (response.data.message === 'Post created!') {
+        toast.success('Post criado com sucesso!');
+        Router.push(`/post/${response.data.post.id}`);
+      }
+    } catch {
+      toast.error('Erro ao criar o post. Tente novamente mais tarde');
+    }
   };
 
   return (

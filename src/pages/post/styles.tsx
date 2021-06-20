@@ -21,7 +21,10 @@ export const PostContent = styled.div`
 
 export const InfoContainer = styled.div`
   display: flex;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  width: 61.25rem;
+  flex-direction: row;
+  align-items: flex-start;
 
   div {
     display: flex;
