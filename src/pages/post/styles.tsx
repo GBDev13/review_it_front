@@ -15,6 +15,7 @@ export const PostContent = styled.div`
 
   h1 {
     font-size: 4rem;
+    width: 61.25rem;
   }
 `;
 
