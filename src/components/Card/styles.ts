@@ -12,6 +12,19 @@ export const CardContainer = styled.div`
 
   background: ${props => props.theme.colors.card};
 
+  animation: cardShow 0.3s ease-in-out forwards;
+
+  @keyframes cardShow {
+    from {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   border: 3px solid ${props => props.theme.colors.border};
   border-radius: 1.875rem;
   transition: 0.5s;
@@ -120,4 +133,15 @@ export const CardGridContainer = styled.section`
   @media (max-width: 520px) {
     grid-template-columns: 1fr;
   }
+
+  .loader {
+    margin-top: 3rem;
+    grid-column: 1 / 4;
+  }
+`;
+
+export const NoResults = styled.p`
+  font-weight: 300;
+  font-weight: 1.5rem;
+  grid-column: 1 / 4;
 `;

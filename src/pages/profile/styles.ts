@@ -16,6 +16,22 @@ export const ProfileContainer = styled.section`
     background: ${props => props.theme.colors.primary};
     height: 12rem;
     width: 100%;
+    position: relative;
+
+    svg {
+      position: absolute;
+      left: 1.5rem;
+      top: 1.5rem;
+      color: ${props => props.theme.colors.text};
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      transition: 0.5s;
+
+      &:hover {
+        color: ${props => props.theme.colors.textSecondary};
+      }
+    }
   }
 `;
 
@@ -25,6 +41,7 @@ export const ProfileContent = styled.main`
   max-width: 95vw;
   margin: 0 auto;
   padding: 0 2rem;
+  margin-bottom: 5rem;
 
   > h2 {
     font-size: 2rem;

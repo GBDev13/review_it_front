@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
+import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import FilterList from '../components/FilterList';
 import CardGrid from '../components/Card/CardGrid';
 
 import { HomeContainer, HomeContent } from '../styles/HomeStyles';
 import { api } from '../services/api';
+import { setTechFilters } from '../store/modules/filters';
+import { IState } from '../store/types';
+import SearchInput from '../components/Header/SearchInput';
 
 type Tech = {
   name: string;
@@ -35,7 +39,7 @@ interface HomeProps {
 }
 
 export default function Home({ techs, posts }: HomeProps) {
-  const [currentFilters, setCurrentFilters] = useState<String[]>([]);
+  const { filters } = useSelector((state: IState) => state);
 
   return (
     <>
@@ -49,9 +53,15 @@ export default function Home({ techs, posts }: HomeProps) {
           <FilterList
             title="Filtre por tecnologia"
             techs={techs}
-            setCurrentItens={setCurrentFilters}
+            setCurrentItens={setTechFilters}
+            hasRedux
+            oldItem={filters.techFilters}
           />
-          <CardGrid cards={posts} />
+          <SearchInput
+            className="busca"
+            style={{ width: '100%', marginTop: '3rem' }}
+          />
+          <CardGrid cards={posts} techFilters={filters.techFilters} />
         </HomeContent>
       </HomeContainer>
     </>

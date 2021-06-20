@@ -11,4 +11,14 @@ export const HomeContent = styled.main`
   max-width: 95vw;
   margin: 0 auto;
   padding: 0 2rem;
+
+  .busca {
+    display: none;
+  }
+
+  @media (max-width: 1100px) {
+    .busca {
+      display: block;
+    }
+  }
 `;

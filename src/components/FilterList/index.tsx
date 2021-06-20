@@ -11,9 +11,17 @@ type FilterListProps = {
   title: string;
   techs: Tech[];
   setCurrentItens: (params: unknown) => void;
+  oldItem: any;
+  hasRedux?: boolean;
 };
 
-function FilterList({ title, techs, setCurrentItens }: FilterListProps) {
+function FilterList({
+  title,
+  techs,
+  setCurrentItens,
+  oldItem,
+  hasRedux = false
+}: FilterListProps) {
   const filters = techs;
 
   return (
@@ -27,6 +35,8 @@ function FilterList({ title, techs, setCurrentItens }: FilterListProps) {
             text={filter.name}
             id={filter.id}
             setCurrentItens={setCurrentItens}
+            oldItem={oldItem}
+            hasRedux={hasRedux}
           />
         ))}
       </FiltersContainer>

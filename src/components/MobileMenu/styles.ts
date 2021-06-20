@@ -10,6 +10,7 @@ export const Container = styled.div<ContainerProps>`
   right: 40px;
   width: 1px;
   height: 1px;
+  z-index: 999;
 
   > svg {
     position: fixed;
@@ -47,6 +48,21 @@ export const Container = styled.div<ContainerProps>`
 
     section {
       margin-bottom: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        margin-right: 1rem;
+        object-fit: cover;
+      }
+
+      p {
+        font-weight: 900;
+      }
     }
 
     nav {
