@@ -5,7 +5,6 @@ import { GetServerSideProps } from 'next';
 import Header from '../components/Header';
 import FilterList from '../components/FilterList';
 import CardGrid from '../components/Card/CardGrid';
-import MobileMenu from '../components/MobileMenu';
 
 import { HomeContainer, HomeContent } from '../styles/HomeStyles';
 import { api } from '../services/api';
@@ -45,7 +44,6 @@ export default function Home({ techs, posts }: HomeProps) {
       </Head>
 
       <HomeContainer>
-        <MobileMenu />
         <Header />
         <HomeContent>
           <FilterList

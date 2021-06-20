@@ -156,3 +156,27 @@ export const LogoutContainer = styled.div`
     }
   }
 `;
+
+export const LogInButtonContainer = styled.div`
+  margin-left: 1rem;
+  button {
+    background: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.text};
+    border: none;
+    padding: 1rem;
+    font-weight: 300;
+    border-radius: 0.5rem;
+    height: 100%;
+    transition: 0.5s;
+  }
+
+  &:hover {
+    button {
+      background: ${props => lighten(0.08, props.theme.colors.primary)};
+    }
+  }
+
+  @media (max-width: 360px) {
+    display: none;
+  }
+`;

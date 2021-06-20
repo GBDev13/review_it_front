@@ -11,6 +11,7 @@ import theme from '../styles/theme';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 import store from '../store/configureStore';
+import MobileMenu from '../components/MobileMenu';
 
 const persistor = persistStore(store);
 
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }) {
             height={6}
             showOnShallow
           />
-
+          <MobileMenu />
           <StyledToast />
           <Component {...pageProps} />
           <GlobalStyles />

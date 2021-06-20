@@ -23,6 +23,9 @@ export default function Card({
   technologies,
   inserted_at
 }: CardProps) {
+  const formattedDate = format(new Date(inserted_at), 'P', {
+    locale: ptBR
+  });
   return (
     <CardContainer>
       <h1>{title}</h1>
@@ -42,11 +45,7 @@ export default function Card({
         </div>
         <div>
           <RiCalendarLine />
-          <span>
-            {format(new Date(inserted_at), 'P', {
-              locale: ptBR
-            })}
-          </span>
+          <span>{formattedDate}</span>
         </div>
       </FlexContainer>
     </CardContainer>

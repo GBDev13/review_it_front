@@ -22,6 +22,7 @@ import {
   PostContent,
   RepositoryContainer
 } from './styles';
+import CodeReviewList, { IReviews } from '../../components/CodeReviewList';
 
 type PostProps = {
   post: {
@@ -35,9 +36,11 @@ type PostProps = {
     };
     star_review: string | null;
   };
+  reviews: IReviews[];
 };
 
-export default function Post({ post }: PostProps) {
+export default function Post({ post, reviews }: PostProps) {
+  console.log(reviews);
   return (
     <>
       <Head>
@@ -87,11 +90,11 @@ export default function Post({ post }: PostProps) {
               <RiPencilLine /> Code Review
             </h2>
 
-            <p>
-              {post.star_review
-                ? post.star_review
-                : 'Não há code reviews para este post ainda.'}
-            </p>
+            {reviews.length > 0 ? (
+              <CodeReviewList reviews={reviews} />
+            ) : (
+              <p>Não há code reviews para este post ainda.</p>
+            )}
           </CodeReviewContainer>
         </PostContent>
       </PostContainer>
@@ -114,7 +117,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     star_review: data.post.star_review
   };
 
+  const { reviews } = data.post;
+
   return {
-    props: { post }
+    props: { post, reviews }
   };
 };
