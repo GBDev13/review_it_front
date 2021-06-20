@@ -1,28 +1,13 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
 
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1.3fr 2fr;
-  width: 100vw;
-  height: 100vh;
-
-  @media (max-width: 1045px) {
-    grid-template-columns: 1fr;
-
-    grid-template-rows: 1fr 3fr;
-  }
-  @media (max-width: 500px) {
-    grid-template-rows: 1fr 1fr;
-  }
-  @media (max-width: 380px) {
-    grid-template-rows: 0.5fr 1fr;
-  }
+export const Container = styled.section`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const LogoContent = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,103 +26,60 @@ export const LogoContent = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+
+  margin-top: 1rem;
 
   form {
     display: flex;
-    height: 35rem;
-    align-items: center;
-    justify-content: space-around;
     flex-direction: column;
     width: 50%;
 
     input {
-      width: 28.4rem;
-      height: 3.5rem;
-
-      background: ${props => props.theme.colors.card};
-
-      border: 3px solid ${props => props.theme.colors.border};
-      border-radius: 0.75rem;
-
-      padding: 1rem;
-
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: ${props => props.theme.colors.textSecondary};
-
-      ::placeholder {
-        font-size: 1.25rem;
-        color: ${props => props.theme.colors.textSecondary};
-        font-weight: 400;
-      }
-
-      &:-webkit-autofill {
-        -webkit-box-shadow: 3rem 3rem 3rem 3rem
-          ${props => props.theme.colors.card} inset;
-        -webkit-text-fill-color: ${props => props.theme.colors.textSecondary};
-      }
-    }
-
-    div {
-      align-self: flex-start;
-    }
-
-    p {
-      font-size: 1.3rem;
-      margin-top: 1rem;
+      margin: 1rem 0;
     }
 
     h2 {
       margin-top: 1rem;
-      margin-bottom: 0.5rem;
+    }
+
+    label {
+      width: 100%;
+
+      &:first-child {
+        width: 28.5rem;
+        margin-top: 1.5rem;
+      }
+    }
+
+    p {
+      margin-top: 2rem;
+      font-size: 1.8rem;
     }
 
     button {
-      width: 9.973rem;
-      height: 2.8rem;
-
-      border: 0;
+      margin-top: 4rem;
       border-radius: 1.25rem;
+      border: none;
+      padding: 1rem 3rem;
+      width: 10rem;
+
+      align-self: center;
 
       background: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.text};
 
       font-size: 1rem;
       font-weight: 600;
-      color: ${props => props.theme.colors.text};
-
-      transition: 0.5s;
 
       &:hover {
         background: ${props => lighten(0.08, props.theme.colors.primary)};
       }
-    }
-  }
-
-  @media (max-width: 1080px) {
-    height: 120vh;
-  }
-
-  @media (max-width: 500px) {
-    height: 120vh;
-    padding: 0 2rem;
-
-    form {
-      width: 100%;
-      input {
-        width: 100%;
-      }
-    }
-  }
-
-  @media (max-width: 380px) {
-    form button {
-      width: 100%;
     }
   }
 `;
@@ -157,11 +99,11 @@ export const FieldError = styled.div`
 `;
 
 export const FlexInput = styled.div`
+  width: 30rem;
+  height: 2.625rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.625rem;
-  margin-bottom: 1rem;
 
   a {
     justify-content: center;

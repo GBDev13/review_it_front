@@ -5,6 +5,8 @@ export const HaveAccountLink = styled.div`
   flex-direction: column;
   align-items: center;
 
+  margin: 3rem 0;
+
   p {
     font-size: 1.5rem;
     font-weight: 400;

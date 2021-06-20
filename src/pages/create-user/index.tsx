@@ -30,6 +30,8 @@ type CreateUserData = {
   is_expert: boolean;
   picture_url?: string | null;
   technologies: String[];
+  github_url?: string | null;
+  linkedin_url?: string | null;
 };
 
 type Tech = {
@@ -69,6 +71,15 @@ function MinCharsErrorMessage() {
   );
 }
 
+function InvalidURLErrorMessage() {
+  return (
+    <>
+      <RiErrorWarningFill />
+      <span>Insira uma URL válida</span>
+    </>
+  );
+}
+
 const schemaFormValidation = yup.object().shape({
   nickname: yup.string().required(RequiredFieldErrorMessage),
   email: yup
@@ -79,7 +90,9 @@ const schemaFormValidation = yup.object().shape({
     .string()
     .min(8, MinCharsErrorMessage)
     .required(RequiredFieldErrorMessage),
-  is_expert: yup.boolean().nullable()
+  is_expert: yup.boolean().nullable(),
+  github_url: yup.string().url(InvalidURLErrorMessage).nullable(),
+  linkedin_url: yup.string().url(InvalidURLErrorMessage).nullable()
 });
 
 export default function SignUp({ techs }: SignUpProps) {
@@ -113,6 +126,14 @@ export default function SignUp({ techs }: SignUpProps) {
       return;
     }
 
+    if (data.github_url === '') {
+      data.github_url = null;
+    }
+
+    if (data.linkedin_url === '') {
+      data.linkedin_url = null;
+    }
+
     data.technologies = currentTechs;
 
     try {
@@ -144,6 +165,15 @@ export default function SignUp({ techs }: SignUpProps) {
 
             <Input placeholder="E-mail" {...register('email')} />
             <FieldError>{errors.email?.message}</FieldError>
+
+            <Input placeholder="URL do Github" {...register('github_url')} />
+            <FieldError>{errors.github_url?.message}</FieldError>
+
+            <Input
+              placeholder="URL do Linkedin"
+              {...register('linkedin_url')}
+            />
+            <FieldError>{errors.linkedin_url?.message}</FieldError>
 
             <Input
               placeholder="Senha"
