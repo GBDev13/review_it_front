@@ -10,7 +10,6 @@ import {
   RiExternalLinkLine
 } from 'react-icons/ri';
 import { format } from 'date-fns';
-
 import ptBR from 'date-fns/locale/pt-BR';
 import Router from 'next/router';
 import { useSelector } from 'react-redux';
