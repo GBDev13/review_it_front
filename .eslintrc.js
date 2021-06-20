@@ -33,5 +33,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'no-param-reassign':'off',
     'import/no-cycle': 'off',
+    'jsx-a11y/alt-text': 'off',
+    '@typescript-eslint/no-unused-expressions': 'off'
   }
 };

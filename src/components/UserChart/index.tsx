@@ -1,42 +1,33 @@
 import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 import { UserCard } from '../../pages/profile/styles';
-import { Legends, LegendItem} from './styles';
+import { Legends, LegendItem } from './styles';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 });
 
-export default function UserChart() {
-  const techs = [
-    {
-      name: 'ReactJS',
-      color: '#5ED3F3',
-      value: 4
-    },
-    {
-      name: 'NodeJs',
-      color: '#8CC84B',
-      value: 2
-    },
-    {
-      name: 'JavaScript',
-      color: '#F0DB4F',
-      value: 6
-    },
-    {
-      name: 'TypeScript',
-      color: '#007ACC',
-      value: 2
-    },
-    {
-      name: 'Redux',
-      color: '#764ABC',
-      value: 4
-    }
-  ];
+interface ITech {
+  name: string;
+  id: string;
+  hex_color: string;
+}
 
-  const series = techs.map(tech => tech.value);
+interface IStat {
+  id: string;
+  reviews: number;
+  technology: ITech;
+  technology_id: string;
+  user_id: string;
+}
+
+interface UserChartProps {
+  stats: IStat[];
+}
+
+export default function UserChart({ stats }: UserChartProps) {
+  const formatedStats = stats.map(item => item.technology);
+  const formatedStatsValues = stats.map(item => item.reviews);
 
   const options: ApexOptions = {
     legend: {
@@ -51,8 +42,8 @@ export default function UserChart() {
     stroke: {
       show: false
     },
-    labels: techs.map(tech => tech.name),
-    colors: techs.map(tech => tech.color),
+    labels: formatedStats.map(tech => tech.name),
+    colors: formatedStats.map(tech => tech.hex_color),
     grid: {
       show: true,
       borderColor: 'transparent',
@@ -72,8 +63,8 @@ export default function UserChart() {
             height: '350px'
           },
           grid: {
-            show: false,
-          },
+            show: false
+          }
         }
       },
       {
@@ -82,7 +73,7 @@ export default function UserChart() {
           chart: {
             width: '100%',
             height: '250px'
-          },
+          }
         }
       }
     ]
@@ -90,11 +81,17 @@ export default function UserChart() {
 
   return (
     <UserCard>
-        <Chart options={options} series={series} type="pie" width="100%" height="100%"/>
+      <Chart
+        options={options}
+        series={formatedStatsValues}
+        type="pie"
+        width="100%"
+        height="100%"
+      />
       <Legends>
-        {techs.map(tech => (
-          <LegendItem key={tech.name} color={tech.color}>
-            <div /> <p>{tech.name}</p>
+        {stats.map(tech => (
+          <LegendItem key={tech.id} color={tech.technology.hex_color}>
+            <div /> <p>{tech.technology.name}</p>
           </LegendItem>
         ))}
       </Legends>

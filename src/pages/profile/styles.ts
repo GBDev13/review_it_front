@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface UserPictureProps {
   url: string;
+}
+
+interface ProfileGridProps {
+  isExpert: boolean;
 }
 
 export const ProfileContainer = styled.section`
@@ -21,6 +25,11 @@ export const ProfileContent = styled.main`
   max-width: 95vw;
   margin: 0 auto;
   padding: 0 2rem;
+
+  > h2 {
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
 
   > section.profileSection {
     display: flex;
@@ -115,7 +124,7 @@ export const UserPicture = styled.div<UserPictureProps>`
   }
 `;
 
-export const ProfileGrid = styled.section`
+export const ProfileGrid = styled.section<ProfileGridProps>`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -124,6 +133,12 @@ export const ProfileGrid = styled.section`
   @media (max-width: 1150px) {
     grid-template-columns: 1fr;
   }
+
+  ${props =>
+    !props.isExpert &&
+    css`
+      grid-template-columns: 1fr;
+    `}
 `;
 
 export const UserCard = styled.div`

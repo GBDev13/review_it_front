@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
@@ -36,6 +36,8 @@ interface HomeProps {
 }
 
 export default function Home({ techs, posts }: HomeProps) {
+  const [currentFilters, setCurrentFilters] = useState<String[]>([]);
+
   return (
     <>
       <Head>
@@ -46,7 +48,11 @@ export default function Home({ techs, posts }: HomeProps) {
         <MobileMenu />
         <Header />
         <HomeContent>
-          <FilterList title="Filtre por tecnologia" techs={techs} />
+          <FilterList
+            title="Filtre por tecnologia"
+            techs={techs}
+            setCurrentItens={setCurrentFilters}
+          />
           <CardGrid cards={posts} />
         </HomeContent>
       </HomeContainer>

@@ -26,7 +26,7 @@ function Header() {
 
           <nav>
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/profile">Profile</NavLink>
+            <NavLink href="/ranking">Ranking</NavLink>
             <NavLink href="/create-post">Criar post</NavLink>
           </nav>
         </section>

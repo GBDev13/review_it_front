@@ -13,6 +13,7 @@ interface UserData {
   github_url: string | null;
   linkedin_url: string | null;
   password: string;
+  technologies?: String[];
 }
 
 interface LoginData {
@@ -23,16 +24,34 @@ interface LoginData {
 export const signupUser = createAsyncThunk(
   'users/signupUser',
   async (
-    { nickname, email, is_expert, picture_url, password }: UserData,
-    thunkAPI
-  ) => {
-    const response = await api.post('users', {
+    {
       nickname,
       email,
       is_expert,
       picture_url,
-      password
-    });
+      password,
+      technologies
+    }: UserData,
+    thunkAPI
+  ) => {
+    const params = is_expert
+      ? {
+          nickname,
+          email,
+          is_expert,
+          picture_url,
+          password,
+          technologies
+        }
+      : {
+          nickname,
+          email,
+          is_expert,
+          picture_url,
+          password
+        };
+
+    const response = await api.post('users', params);
 
     if (response.status !== 201) {
       return thunkAPI.rejectWithValue(response);
