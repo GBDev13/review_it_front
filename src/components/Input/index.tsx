@@ -1,3 +1,4 @@
+import { forwardRef, ForwardRefRenderFunction } from 'react';
 import { InputContainer } from './styles';
 
 interface InputProps {
@@ -6,16 +7,18 @@ interface InputProps {
   id?: string;
 }
 
-function Input({ placeholder, type = 'text', id, ...rest }: InputProps) {
-  return (
-    <InputContainer
-      placeholder={placeholder}
-      type={type}
-      id={id}
-      {...rest}
-      hasValue={false}
-    />
-  );
-}
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { placeholder, type = 'text', id, ...rest },
+  ref
+) => (
+  <InputContainer
+    placeholder={placeholder}
+    type={type}
+    id={id}
+    {...rest}
+    hasValue={false}
+    ref={ref}
+  />
+);
 
-export default Input;
+export const Input = forwardRef(InputBase);

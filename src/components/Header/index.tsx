@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { toggleMobileMenu } from '../../store/modules/menus';
 import { IState } from '../../store/types';
-import Input from '../Input';
 import NavLink from './NavLink';
 import Logout from './Logout';
 import { Container, UserProfile } from './styles';
+import { Input } from '../Input';
 
 function Header() {
   const dispatch = useDispatch();

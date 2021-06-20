@@ -16,7 +16,7 @@ import {
   FieldError,
   FlexInput
 } from './styles';
-import Input from '../../components/Input';
+import { Input } from '../../components/Input';
 import FooterNavigation from '../../components/FooterNavigation';
 import FilterList from '../../components/FilterList';
 import { FileInput } from '../../components/FileInput';
