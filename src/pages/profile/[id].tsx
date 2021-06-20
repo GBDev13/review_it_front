@@ -44,15 +44,18 @@ interface IUser {
   score: number;
   inserted_at: string;
   stats: IStat[];
+  posts_amount: number;
 }
 
 interface ProfileProps {
   user: IUser;
   posts: any[];
+  rank: {
+    position: number;
+  };
 }
 
-export default function Profile({ user, posts }: ProfileProps) {
-  console.log(user);
+export default function Profile({ user, posts, rank }: ProfileProps) {
   const totalReviews = user.stats.reduce(
     (sumTotal, review) => sumTotal + review.reviews,
     0
@@ -94,10 +97,14 @@ export default function Profile({ user, posts }: ProfileProps) {
             {user.is_expert && <UserChart stats={user?.stats} />}
             <UserCard className="userInfos">
               <UserDataContainer>
-                <ProfileItem title="Nível" info={22} icon={<AiFillStar />} />
                 <ProfileItem
-                  title="Classificação"
-                  info={2}
+                  title="Experiência"
+                  info={user.score}
+                  icon={<AiFillStar />}
+                />
+                <ProfileItem
+                  title="Rank do Mês"
+                  info={rank.position}
                   icon={<GiRank2 />}
                 />
                 <ProfileItem
@@ -107,7 +114,7 @@ export default function Profile({ user, posts }: ProfileProps) {
                 />
                 <ProfileItem
                   title="Projetos"
-                  info={posts.length}
+                  info={user.posts_amount}
                   icon={<HiCode />}
                 />
               </UserDataContainer>
@@ -130,8 +137,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
   const { data } = await api.get(`users/${id}`);
   const { data: postsData } = await api.get(`users/${id}/posts`);
+  const { data: userRank } = await api.get(`users/${id}/rank`);
 
   return {
-    props: { user: data.user, posts: postsData.result }
+    props: { user: data.user, posts: postsData.result, rank: userRank.rank }
   };
 };

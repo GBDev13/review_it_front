@@ -6,7 +6,7 @@ import { toggleMobileMenu } from '../../store/modules/menus';
 import { IState } from '../../store/types';
 import NavLink from './NavLink';
 import Logout from './Logout';
-import { Container, UserProfile } from './styles';
+import { Container, UserProfile, LogInButtonContainer } from './styles';
 import { Input } from '../Input';
 
 function Header() {
@@ -34,9 +34,18 @@ function Header() {
 
         <section>
           <Input placeholder="Buscar projetos" />
+          {!user.id && (
+            <LogInButtonContainer>
+              <Link href="/login">
+                <a>
+                  <button type="button">Entrar</button>
+                </a>
+              </Link>
+            </LogInButtonContainer>
+          )}
           {user.id && (
             <>
-              <Link href={`profile/${user.id}`}>
+              <Link href={`/profile/${user.id}`}>
                 <a>
                   <UserProfile
                     url={user.picture_url || '/defaultuserpicture.png'}
