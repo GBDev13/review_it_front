@@ -8,8 +8,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import FilterList from '../../components/FilterList';
 
+import FilterList from '../../components/FilterList';
 import Header from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Textarea } from '../../components/Textarea';

@@ -12,7 +12,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 3rem;
+  margin: 3rem 0;
 
   form {
     display: flex;
@@ -20,13 +20,12 @@ export const Content = styled.div`
     align-items: center;
     flex-direction: column;
 
-    margin-bottom: 5%;
-
     label {
       color: ${props => props.theme.colors.text};
       font-size: 1.5rem;
       align-self: flex-start;
       margin-bottom: 1rem;
+      font-weight: 500;
     }
 
     input,
@@ -72,6 +71,19 @@ export const Content = styled.div`
       input,
       textarea {
         margin: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      width: 80vw;
+
+      label {
+        font-size: 1.3rem;
+      }
+      input,
+      textarea,
+      section {
+        width: 80vw;
       }
     }
   }
