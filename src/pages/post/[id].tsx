@@ -12,6 +12,8 @@ import {
 import { format } from 'date-fns';
 
 import ptBR from 'date-fns/locale/pt-BR';
+import Router from 'next/router';
+import { useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import { api } from '../../services/api';
 import {
@@ -23,6 +25,7 @@ import {
   RepositoryContainer
 } from './styles';
 import CodeReviewList, { IReviews } from '../../components/CodeReviewList';
+import { IState } from '../../store/types';
 
 type PostProps = {
   post: {
@@ -40,7 +43,8 @@ type PostProps = {
 };
 
 export default function Post({ post, reviews }: PostProps) {
-  console.log(reviews);
+  const { user } = useSelector((state: IState) => state);
+
   return (
     <>
       <Head>
@@ -96,6 +100,17 @@ export default function Post({ post, reviews }: PostProps) {
               <p>Não há code reviews para este post ainda.</p>
             )}
           </CodeReviewContainer>
+
+          {reviews.length <= 0 && user.is_expert && (
+            <button
+              type="button"
+              onClick={() => {
+                Router.push(`/create-review/${post.id}`);
+              }}
+            >
+              Criar Review
+            </button>
+          )}
         </PostContent>
       </PostContainer>
     </>

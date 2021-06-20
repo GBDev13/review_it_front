@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
@@ -12,6 +13,28 @@ export const PostContent = styled.div`
   flex-direction: column;
 
   margin: 3rem 0;
+
+  button {
+    width: 9.973rem;
+    height: 2.8rem;
+
+    margin-top: 3rem;
+
+    border: 0;
+    border-radius: 1.25rem;
+
+    background: ${props => props.theme.colors.primary};
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: ${props => props.theme.colors.text};
+
+    transition: 0.5s;
+
+    &:hover {
+      background: ${props => lighten(0.08, props.theme.colors.primary)};
+    }
+  }
 
   h1 {
     font-size: 4rem;
