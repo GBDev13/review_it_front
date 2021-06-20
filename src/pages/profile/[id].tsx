@@ -4,6 +4,7 @@ import { VscFileCode } from 'react-icons/vsc';
 import { GiRank2 } from 'react-icons/gi';
 import { HiCode } from 'react-icons/hi';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import {
   ProfileContainer,
   UserPicture,
@@ -58,59 +59,70 @@ export default function Profile({ user, posts }: ProfileProps) {
   );
 
   return (
-    <ProfileContainer>
-      <header />
-      <ProfileContent>
-        <section className="profileSection">
-          <UserSection>
-            <UserPicture url={user.picture_url || '/defaultuserpicture.png'} />
-            <div>
-              <h2>{user.nickname}</h2>
-              {user.is_expert && <p>EXPERT</p>}
+    <>
+      <Head>
+        <title>review.it | {user.nickname}</title>
+      </Head>
+      <ProfileContainer>
+        <header />
+        <ProfileContent>
+          <section className="profileSection">
+            <UserSection>
+              <UserPicture
+                url={user.picture_url || '/defaultuserpicture.png'}
+              />
+              <div>
+                <h2>{user.nickname}</h2>
+                {user.is_expert && <p>EXPERT</p>}
+              </div>
+            </UserSection>
+            <div className="navigation">
+              {user.linkedin_url && (
+                <a href={user.linkedin_url} target="_blank" rel="noreferrer">
+                  <FaLinkedin />
+                </a>
+              )}
+              {user.github_url && (
+                <a href={user.github_url} target="_blank" rel="noreferrer">
+                  <AiFillGithub />
+                </a>
+              )}
             </div>
-          </UserSection>
-          <div className="navigation">
-            {user.linkedin_url && (
-              <a href={user.linkedin_url} target="_blank" rel="noreferrer">
-                <FaLinkedin />
-              </a>
-            )}
-            {user.github_url && (
-              <a href={user.github_url} target="_blank" rel="noreferrer">
-                <AiFillGithub />
-              </a>
-            )}
-          </div>
-        </section>
+          </section>
 
-        <ProfileGrid isExpert={user.is_expert}>
-          {user.is_expert && <UserChart stats={user?.stats} />}
-          <UserCard className="userInfos">
-            <UserDataContainer>
-              <ProfileItem title="Nível" info={22} icon={<AiFillStar />} />
-              <ProfileItem title="Classificação" info={2} icon={<GiRank2 />} />
-              <ProfileItem
-                title="Revisões"
-                info={totalReviews}
-                icon={<VscFileCode />}
-              />
-              <ProfileItem
-                title="Projetos"
-                info={posts.length}
-                icon={<HiCode />}
-              />
-            </UserDataContainer>
-          </UserCard>
-        </ProfileGrid>
+          <ProfileGrid isExpert={user.is_expert}>
+            {user.is_expert && <UserChart stats={user?.stats} />}
+            <UserCard className="userInfos">
+              <UserDataContainer>
+                <ProfileItem title="Nível" info={22} icon={<AiFillStar />} />
+                <ProfileItem
+                  title="Classificação"
+                  info={2}
+                  icon={<GiRank2 />}
+                />
+                <ProfileItem
+                  title="Revisões"
+                  info={totalReviews}
+                  icon={<VscFileCode />}
+                />
+                <ProfileItem
+                  title="Projetos"
+                  info={posts.length}
+                  icon={<HiCode />}
+                />
+              </UserDataContainer>
+            </UserCard>
+          </ProfileGrid>
 
-        {posts.length > 0 && (
-          <>
-            <h2>Projetos do usuário</h2>
-            <CardGrid cards={posts} />
-          </>
-        )}
-      </ProfileContent>
-    </ProfileContainer>
+          {posts.length > 0 && (
+            <>
+              <h2>Projetos do usuário</h2>
+              <CardGrid cards={posts} />
+            </>
+          )}
+        </ProfileContent>
+      </ProfileContainer>
+    </>
   );
 }
 
