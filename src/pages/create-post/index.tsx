@@ -2,7 +2,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import * as yup from 'yup';
@@ -57,6 +57,8 @@ const schemaFormValidation = yup.object().shape({
 });
 
 export default function CreatePost({ techs }: CreatePostProps) {
+  const [currentTechs, setCurrentTechs] = useState<String[]>([]);
+
   const {
     register,
     handleSubmit,
@@ -96,7 +98,11 @@ export default function CreatePost({ techs }: CreatePostProps) {
             <Input placeholder="" id="code_url" {...register('code_url')} />
             <FieldError>{errors.code_url?.message}</FieldError>
 
-            <FilterList title="Tecnologias" techs={techs} />
+            <FilterList
+              title="Tecnologias"
+              techs={techs}
+              setCurrentItens={setCurrentTechs}
+            />
 
             <button type="submit">Enviar post</button>
           </form>

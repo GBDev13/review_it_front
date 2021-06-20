@@ -3,7 +3,15 @@ import {
   configureStore,
   getDefaultMiddleware
 } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import menus from './modules/menus';
 import user from './modules/user';
@@ -18,7 +26,12 @@ const reducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer,
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+    }
+  })
 });
 
 export default store;

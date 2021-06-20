@@ -10,9 +10,10 @@ type Tech = {
 type FilterListProps = {
   title: string;
   techs: Tech[];
+  setCurrentItens: (params: unknown) => void;
 };
 
-function FilterList({ title, techs }: FilterListProps) {
+function FilterList({ title, techs, setCurrentItens }: FilterListProps) {
   const filters = techs;
 
   return (
@@ -21,7 +22,12 @@ function FilterList({ title, techs }: FilterListProps) {
 
       <FiltersContainer>
         {filters.map(filter => (
-          <FilterItem key={filter.id} text={filter.name} />
+          <FilterItem
+            key={filter.id}
+            text={filter.name}
+            id={filter.id}
+            setCurrentItens={setCurrentItens}
+          />
         ))}
       </FiltersContainer>
     </Container>

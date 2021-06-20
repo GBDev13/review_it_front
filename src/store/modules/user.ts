@@ -10,6 +10,8 @@ interface UserData {
   email: string;
   is_expert: boolean;
   picture_url?: string | null;
+  github_url: string | null;
+  linkedin_url: string | null;
   password: string;
 }
 
@@ -72,6 +74,9 @@ const initialState: IUser = {
   email: '',
   is_expert: null,
   picture_url: '',
+  github_url: '',
+  linkedin_url: '',
+  score: 0,
   isFetching: false,
   isSuccess: false,
   isError: false
@@ -90,7 +95,6 @@ export const slice = createSlice({
     },
     signOut: state => {
       destroyCookie(undefined, 'reviewit.token');
-      destroyCookie(undefined, 'reviewit.refreshToken');
       state.id = null;
       state.nickname = '';
       state.email = '';
@@ -120,6 +124,9 @@ export const slice = createSlice({
       state.is_expert = payload.user.is_expert;
       state.picture_url = payload.user.picture_url;
       state.id = payload.user.id;
+      state.github_url = payload.user.github_url;
+      state.linkedin_url = payload.user.linkedin_url;
+      state.score = payload.user.score;
 
       toast.success(
         `Sua conta foi criada com sucesso! Bem-vindo(a) ${payload.user.nickname} 😁`
@@ -140,6 +147,10 @@ export const slice = createSlice({
       state.nickname = payload.user.nickname;
       state.is_expert = payload.user.is_expert;
       state.picture_url = payload.user.picture_url;
+      state.id = payload.user.id;
+      state.github_url = payload.user.github_url;
+      state.linkedin_url = payload.user.linkedin_url;
+      state.score = payload.user.score;
       state.isFetching = false;
       state.isSuccess = true;
       api.defaults.headers.Authorization = `Bearer ${payload.token}`;

@@ -33,14 +33,19 @@ function Header() {
 
         <section>
           <Input placeholder="Buscar projetos" />
-          <Link href={`profile/${user.id}`}>
-            <a>
-              <UserProfile
-                url={user.picture_url || '/defaultuserpicture.png'}
-              />
-            </a>
-          </Link>
-          <Logout />
+          {user.id && (
+            <>
+              <Link href={`profile/${user.id}`}>
+                <a>
+                  <UserProfile
+                    url={user.picture_url || '/defaultuserpicture.png'}
+                  />
+                </a>
+              </Link>
+              <Logout />
+            </>
+          )}
+
           <HiMenuAlt2 className="mobileMenu" onClick={handleOpenMenu} />
         </section>
       </div>
