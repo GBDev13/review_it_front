@@ -65,6 +65,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const responsePosts = await api.get('/posts');
   const posts = responsePosts.data.result;
 
+  posts.sort((a, b) => {
+    if (a.inserted_at > b.inserted_at) {
+      return -1;
+    }
+    return true;
+  });
+
   return {
     props: { techs, posts }
   };
