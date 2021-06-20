@@ -6,9 +6,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { GetServerSideProps } from 'next';
 import { RiErrorWarningFill } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import Router from 'next/router';
 import { Container, Content, FieldError } from './styles';
 import Header from '../../components/Header';
 import { Textarea } from '../../components/Textarea';
+import { api } from '../../services/api';
 
 interface SendReviewProps {
   description: string;
@@ -50,7 +53,24 @@ export default function CreateReview({ id }: CreateReviewProps) {
   const handleReviewSubmit: SubmitHandler<SendReviewProps> = async data => {
     data.post_id = id;
 
-    console.log(data);
+    try {
+      const response = await api.post('/reviews', data);
+      if (response.data.message === 'Review created!') {
+        toast.success('Review criado com sucesso!');
+        Router.push(`/post/${response.data.review.post_id}`);
+      }
+    } catch (err) {
+      if (err.response.data.errors.user_id[0] === 'has already been taken') {
+        toast.info(
+          'Você já enviou um code review para este post anteriormente'
+        );
+        return;
+      }
+
+      toast.error(
+        'Não foi possível enviar este code review no momento. Perdão 😥'
+      );
+    }
   };
 
   return (
@@ -102,8 +122,6 @@ export default function CreateReview({ id }: CreateReviewProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
-
-  console.log(id);
 
   return {
     props: { id }
