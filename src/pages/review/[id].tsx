@@ -47,7 +47,7 @@ export default function Review({ review, postOwner }: ReviewProps) {
       setIsStarred(!isStarred);
     } catch {
       toast.error(
-        'Não foi possível dar uma estrela no momento, tente mais tarde'
+        'Não foi possível dar ou remover a estrela no momento, tente mais tarde'
       );
     }
   };
