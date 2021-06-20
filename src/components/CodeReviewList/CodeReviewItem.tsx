@@ -16,7 +16,7 @@ export default function CodeReviewItem({ review }: CodeReviewProps) {
     <CodeReviewContainer>
       <CodeReviewUserInfos>
         <div>
-          <img src={review.user.picture_url || '/defaultuserpicture.png'} />
+          <img src={review?.user?.picture_url || '/defaultuserpicture.png'} />
           <div>
             <h3>{review.user.nickname}</h3>
             <span>EXPERT</span>

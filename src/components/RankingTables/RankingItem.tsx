@@ -12,7 +12,7 @@ export default function RankingItem({ rankItem }: RankingItemProps) {
       <div>
         <div className="img">
           <img
-            src={rankItem.user.picture_url || '/defaultuserpicture.png'}
+            src={rankItem?.user?.picture_url || '/defaultuserpicture.png'}
             alt={rankItem.user.nickname}
           />
         </div>

@@ -48,7 +48,7 @@ function Header() {
               <Link href={`/profile/${user.id}`}>
                 <a>
                   <UserProfile
-                    url={user.picture_url || '/defaultuserpicture.png'}
+                    url={user?.picture_url || '/defaultuserpicture.png'}
                   />
                 </a>
               </Link>

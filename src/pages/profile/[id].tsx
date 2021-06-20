@@ -71,7 +71,7 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
           <section className="profileSection">
             <UserSection>
               <UserPicture
-                url={user.picture_url || '/defaultuserpicture.png'}
+                url={user?.picture_url || '/defaultuserpicture.png'}
               />
               <div>
                 <h2>{user.nickname}</h2>
