@@ -6,15 +6,16 @@ interface ProfileItemProps {
   info: string | number;
   title: string;
   icon: ReactElement;
+  fallback?: string;
 }
 
-function ProfileItem({ info, title, icon }: ProfileItemProps) {
+function ProfileItem({ info, title, icon, fallback }: ProfileItemProps) {
   return (
     <Container>
       {icon}
       <div>
         <strong>{title}</strong>
-        <p>{info}</p>
+        {info === null ? <span>{fallback}</span> : <p>{info}</p>}
       </div>
     </Container>
   );

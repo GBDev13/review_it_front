@@ -10,8 +10,8 @@ interface UserData {
   email: string;
   is_expert: boolean;
   picture_url?: string | null;
-  github_url: string | null;
-  linkedin_url: string | null;
+  github_url?: string | null;
+  linkedin_url?: string | null;
   password: string;
   technologies?: String[];
 }
@@ -29,6 +29,8 @@ export const signupUser = createAsyncThunk(
       email,
       is_expert,
       picture_url,
+      github_url,
+      linkedin_url,
       password,
       technologies
     }: UserData,
@@ -41,6 +43,8 @@ export const signupUser = createAsyncThunk(
           is_expert,
           picture_url,
           password,
+          github_url,
+          linkedin_url,
           technologies
         }
       : {
@@ -48,6 +52,8 @@ export const signupUser = createAsyncThunk(
           email,
           is_expert,
           picture_url,
+          github_url,
+          linkedin_url,
           password
         };
 

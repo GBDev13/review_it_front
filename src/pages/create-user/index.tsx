@@ -105,7 +105,6 @@ export default function SignUp({ techs }: SignUpProps) {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm<CreateUserData>({
     resolver: yupResolver(schemaFormValidation)
@@ -136,13 +135,7 @@ export default function SignUp({ techs }: SignUpProps) {
 
     data.technologies = currentTechs;
 
-    try {
-      dispatch(signupUser(data));
-
-      reset();
-    } catch {
-      toast.error('Erro ao criar o usuário. Tente novamente mais tarde');
-    }
+    dispatch(signupUser(data));
   };
 
   return (

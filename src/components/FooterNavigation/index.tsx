@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { HaveAccountLink } from './styles';
 
 type FooterNavigationProps = {
@@ -14,7 +15,9 @@ export default function FooterNavigation({
   return (
     <HaveAccountLink>
       <p>{question}</p>
-      <a href={link}>{linkText}</a>
+      <Link href={link}>
+        <a>{linkText}</a>
+      </Link>
     </HaveAccountLink>
   );
 }

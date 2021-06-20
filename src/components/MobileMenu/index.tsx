@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 import { IState } from '../../store/types';
 import { Container } from './styles';
 import { toggleMobileMenu } from '../../store/modules/menus';
@@ -7,9 +10,15 @@ import { toggleMobileMenu } from '../../store/modules/menus';
 function MobileMenu() {
   const { menus } = useSelector((state: IState) => state);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   function handleCloseMenu() {
     dispatch(toggleMobileMenu(false));
+  }
+
+  function handleRedirect(route: string) {
+    router.push(route);
+    handleCloseMenu();
   }
 
   return (
@@ -22,8 +31,9 @@ function MobileMenu() {
               <p>user e notificações</p>
             </section>
             <nav>
-              <a>Home</a>
-              <a>Profile</a>
+              <a onClick={() => handleRedirect('/')}>Home</a>
+              <a onClick={() => handleRedirect('/ranking')}>Ranking</a>
+              <a onClick={() => handleRedirect('/create-post')}>Criar post</a>
             </nav>
           </div>
         </>

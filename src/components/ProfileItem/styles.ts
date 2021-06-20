@@ -22,6 +22,13 @@ export const Container = styled.div`
       font-weight: 900;
       font-size: 4.5rem;
     }
+
+    span {
+      margin: 0;
+      font-weight: 900;
+      display: block;
+      font-size: 2rem;
+    }
   }
 
   svg {
@@ -45,6 +52,10 @@ export const Container = styled.div`
       p {
         font-size: 3rem;
       }
+
+      span {
+        font-size: 1.8rem;
+      }
     }
 
     svg {
@@ -62,6 +73,9 @@ export const Container = styled.div`
 
       p {
         font-size: 2rem;
+      }
+      span {
+        font-size: 1.5rem;
       }
     }
 

@@ -60,7 +60,6 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
     (sumTotal, review) => sumTotal + review.reviews,
     0
   );
-
   return (
     <>
       <Head>
@@ -93,8 +92,10 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
             </div>
           </section>
 
-          <ProfileGrid isExpert={user.is_expert}>
-            {user.is_expert && <UserChart stats={user?.stats} />}
+          <ProfileGrid isExpert={user.is_expert && user.stats.length > 0}>
+            {user.is_expert && user.stats.length > 0 && (
+              <UserChart stats={user?.stats} />
+            )}
             <UserCard className="userInfos">
               <UserDataContainer>
                 <ProfileItem
@@ -104,7 +105,8 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
                 />
                 <ProfileItem
                   title="Rank do Mês"
-                  info={rank.position}
+                  info={rank?.position || null}
+                  fallback="Sem rank"
                   icon={<GiRank2 />}
                 />
                 <ProfileItem
@@ -137,9 +139,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
   const { data } = await api.get(`users/${id}`);
   const { data: postsData } = await api.get(`users/${id}/posts`);
-  const { data: userRank } = await api.get(`users/${id}/rank`);
+  try {
+    const { data: userRank } = await api.get(`users/${id}/rank`);
 
-  return {
-    props: { user: data.user, posts: postsData.result, rank: userRank.rank }
-  };
+    return {
+      props: { user: data.user, posts: postsData.result, rank: userRank.rank }
+    };
+  } catch (err) {
+    return {
+      props: { user: data.user, posts: postsData.result, rank: null }
+    };
+  }
 };
