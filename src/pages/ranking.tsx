@@ -23,6 +23,7 @@ export interface IRank {
   id: string;
   position: number;
   user: IUser;
+  score: number;
 }
 
 export interface RankingProps {
@@ -61,7 +62,7 @@ export default function Ranking({ ranks }: RankingProps) {
               />
               <section>
                 <h1>{item.user.nickname}</h1>
-                <p>{item.user.score} xp</p>
+                <p>{item.score} xp</p>
               </section>
             </RankingUser>
           ))}

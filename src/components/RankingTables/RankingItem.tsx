@@ -22,7 +22,7 @@ export default function RankingItem({
         </div>
         <section>
           <p>{isMe ? 'Você' : rankItem?.user?.nickname}</p>
-          <strong>{rankItem?.user?.score} xp</strong>
+          <strong>{rankItem?.score} xp</strong>
         </section>
       </div>
     </RankingItemContainer>
