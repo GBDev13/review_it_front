@@ -98,8 +98,8 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
             </div>
           </section>
 
-          <ProfileGrid isExpert={user.is_expert && user.stats.length > 0}>
-            {user.is_expert && user.stats.length > 0 && (
+          <ProfileGrid isExpert={user.is_expert && user.stats?.length > 0}>
+            {user.is_expert && user.stats?.length > 0 && (
               <UserChart stats={user?.stats} />
             )}
             <UserCard className="userInfos">
@@ -129,7 +129,7 @@ export default function Profile({ user, posts, rank }: ProfileProps) {
             </UserCard>
           </ProfileGrid>
 
-          {posts.length > 0 && (
+          {posts?.length > 0 && (
             <>
               <h2>Projetos do usuário</h2>
               <CardGrid cards={posts} />
