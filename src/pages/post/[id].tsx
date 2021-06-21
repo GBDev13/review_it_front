@@ -106,7 +106,7 @@ export default function Post({ post, reviews }: PostProps) {
             )}
           </CodeReviewContainer>
 
-          {reviews.length <= 0 && user.is_expert && (
+          {user.is_expert && (
             <button
               type="button"
               onClick={() => {

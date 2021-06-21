@@ -72,7 +72,7 @@ export default function CardGrid({ cards, techFilters }: CardGridProps) {
   return (
     <CardGridContainer>
       {loading && <Loader />}
-      {!techFilters.length &&
+      {!techFilters?.length &&
         !filters.currentSearch &&
         cards.map(card => (
           <Link key={card.id} href={`/post/${card.id}`}>
@@ -87,7 +87,7 @@ export default function CardGrid({ cards, techFilters }: CardGridProps) {
             </div>
           </Link>
         ))}
-      {(techFilters.length > 0 || filters.currentSearch.length > 0) &&
+      {(techFilters?.length > 0 || filters.currentSearch.length > 0) &&
         !loading &&
         filteredResults.map(card => (
           <Link key={card.id} href={`/post/${card.id}`}>
