@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { BiCrown } from 'react-icons/bi';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -41,6 +42,9 @@ export default function Ranking({ ranks }: RankingProps) {
 
   return (
     <>
+      <Head>
+        <title>review.it | ranking</title>
+      </Head>
       <Header />
       <ReviewContainer>
         <h1>Ranking mensal de experts</h1>
