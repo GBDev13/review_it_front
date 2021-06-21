@@ -73,7 +73,6 @@ export const InfoContainer = styled.div`
 
     span {
       margin-left: 0.25rem;
-      text-transform: uppercase;
     }
 
     &:first-child {
