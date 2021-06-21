@@ -29,7 +29,7 @@ type Tech = {
 
 type CardGridProps = {
   cards: CardType[];
-  techFilters: String[];
+  techFilters?: String[];
 };
 
 export default function CardGrid({ cards, techFilters }: CardGridProps) {

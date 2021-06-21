@@ -1,6 +1,6 @@
 import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
-import { UserCard } from '../../pages/profile/styles';
+import { UserCard } from '../../styles/ProfileStyles';
 import { Legends, LegendItem } from './styles';
 
 const Chart = dynamic(() => import('react-apexcharts'), {

@@ -15,14 +15,14 @@ import {
   Content,
   FieldError,
   FlexInput
-} from './styles';
-import { Input } from '../../components/Input';
-import FooterNavigation from '../../components/FooterNavigation';
-import FilterList from '../../components/FilterList';
-import { FileInput } from '../../components/FileInput';
-import { api } from '../../services/api';
-import { clearState, signupUser } from '../../store/modules/user';
-import { IState } from '../../store/types';
+} from '../styles/CreateUserStyles';
+import { Input } from '../components/Input';
+import FooterNavigation from '../components/FooterNavigation';
+import FilterList from '../components/FilterList';
+import { FileInput } from '../components/FileInput';
+import { api } from '../services/api';
+import { clearState, signupUser } from '../store/modules/user';
+import { IState } from '../store/types';
 
 type CreateUserData = {
   nickname: string;
