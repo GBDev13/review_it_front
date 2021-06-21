@@ -97,7 +97,7 @@ export default function Review({ review, postOwner, hasStar }: ReviewProps) {
               </div>
             )}
 
-            {currentStared && (
+            {isStarred && (
               <div className="star">
                 <RiStarFill fontSize="3rem" /> <p>Premiado</p>
               </div>

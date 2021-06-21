@@ -119,7 +119,9 @@ export const slice = createSlice({
       return state;
     },
     signOut: state => {
-      destroyCookie(undefined, 'reviewit.token');
+      destroyCookie(undefined, 'reviewit.token', {
+        path: '/'
+      });
       state.id = null;
       state.nickname = '';
       state.email = '';
