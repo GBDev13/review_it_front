@@ -48,7 +48,7 @@ type PostProps = {
 export default function Post({ post, reviews }: PostProps) {
   const { user } = useSelector((state: IState) => state);
 
-  const starReviewId = post.star_review.id;
+  const starReviewId = post?.star_review?.id;
 
   return (
     <>
