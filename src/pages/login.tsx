@@ -6,11 +6,16 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, LogoContent, Content, FieldError } from './styles';
-import { Input } from '../../components/Input';
-import FooterNavigation from '../../components/FooterNavigation';
-import { loginUser } from '../../store/modules/user';
-import { withSSRGuest } from '../../utils/withSSRGuest';
+import {
+  Container,
+  LogoContent,
+  Content,
+  FieldError
+} from '../styles/LoginStyles';
+import { Input } from '../components/Input';
+import FooterNavigation from '../components/FooterNavigation';
+import { loginUser } from '../store/modules/user';
+import { withSSRGuest } from '../utils/withSSRGuest';
 
 type SignInFormData = {
   email: string;

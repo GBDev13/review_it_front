@@ -15,7 +15,7 @@ import {
   ProfileGrid,
   UserCard,
   UserDataContainer
-} from './styles';
+} from '../../styles/ProfileStyles';
 import UserChart from '../../components/UserChart';
 import ProfileItem from '../../components/ProfileItem';
 import { api } from '../../services/api';

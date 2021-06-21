@@ -1,15 +1,15 @@
 import { GetStaticProps } from 'next';
 import { BiCrown } from 'react-icons/bi';
 import { IoIosArrowDown } from 'react-icons/io';
-import Header from '../../components/Header';
-import RankingTables from '../../components/RankingTables';
-import { api } from '../../services/api';
+import Header from '../components/Header';
+import RankingTables from '../components/RankingTables';
+import { api } from '../services/api';
 import {
   ReviewContainer,
   RankingPictures,
   RankingUser,
   RankingPicture
-} from './styles';
+} from '../styles/RankingStyles';
 
 interface IUser {
   id: string;

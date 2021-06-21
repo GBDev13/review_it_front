@@ -8,7 +8,11 @@ import { GetServerSideProps } from 'next';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
-import { Container, Content, FieldError } from './styles';
+import {
+  Container,
+  Content,
+  FieldError
+} from '../../styles/CreateReviewStyles';
 import Header from '../../components/Header';
 import { Textarea } from '../../components/Textarea';
 import { api } from '../../services/api';

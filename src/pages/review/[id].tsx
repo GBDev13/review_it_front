@@ -22,7 +22,7 @@ import {
   ReviewContainer,
   ReviewContent,
   ReviewButtonContainer
-} from './styles';
+} from '../../styles/ReviewStyles';
 import { api } from '../../services/api';
 import { IReviews } from '../../components/CodeReviewList';
 import { IState } from '../../store/types';

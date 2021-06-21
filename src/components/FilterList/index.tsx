@@ -11,7 +11,7 @@ type FilterListProps = {
   title: string;
   techs: Tech[];
   setCurrentItens: (params: unknown) => void;
-  oldItem: any;
+  oldItem?: any;
   hasRedux?: boolean;
 };
 

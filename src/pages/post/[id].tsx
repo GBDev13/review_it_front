@@ -22,7 +22,7 @@ import {
   PostContainer,
   PostContent,
   RepositoryContainer
-} from './styles';
+} from '../../styles/PostStyles';
 import CodeReviewList, { IReviews } from '../../components/CodeReviewList';
 import { IState } from '../../store/types';
 
