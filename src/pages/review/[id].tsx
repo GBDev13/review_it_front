@@ -143,11 +143,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const { data } = await api.get(`/reviews/${id}`);
   const { data: postData } = await api.get(`/posts/${data.review.post_id}`);
+
   return {
     props: {
       review: data.review,
       postOwner: postData.post.author.id,
-      hasStar: postData.post.star_review.id
+      hasStar: postData.post.star_review_id
     }
   };
 };
